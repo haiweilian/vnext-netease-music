@@ -1,0 +1,71 @@
+/* slider
+-------------------------- */
+.el-slider {
+  .el-slider__runway {
+    height: 3px;
+    margin: 0;
+  }
+
+  .el-slider__bar {
+    height: 3px;
+    background: #d33a31;
+  }
+
+  .el-slider__button-wrapper {
+    top: -17px;
+  }
+
+  .el-slider__button {
+    width: 15px;
+    height: 15px;
+    background: #d33a31;
+    border: none;
+  }
+}
+
+.slider-hover-button {
+  .el-slider .el-slider__button {
+    opacity: 0;
+  }
+
+  &:hover .el-slider .el-slider__button {
+    opacity: 1;
+  }
+}
+
+/* tabs
+-------------------------- */
+.el-tabs {
+  .el-tabs__item {
+    color: #7f7f81;
+
+    &.is-active,
+    &:hover {
+      color: #d33a31;
+    }
+  }
+
+  .el-tabs__active-bar {
+    background-color: #d33a31;
+  }
+
+  .el-tabs__nav-wrap::after {
+    height: 1px;
+  }
+}
+
+/* pager
+-------------------------- */
+.el-pager {
+  li.active {
+    color: #d33a31;
+  }
+}
+
+/* input
+-------------------------- */
+.el-input {
+  .el-input__inner:focus {
+    border-color: #d33a31;
+  }
+}
