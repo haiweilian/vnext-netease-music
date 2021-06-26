@@ -1,8 +1,8 @@
 <template>
   <teleport to="#app">
-    <div class="player is-hide">
-      <div class="player__content">
-        <div class="player__song">
+    <div class="player-lyric is-hide">
+      <div class="player-lyric__content">
+        <div class="player-lyric__song">
           <div class="player-cover">
             <img :src="PlayBarSupport" class="player-cover__support">
             <img :src="PlayBar" class="player-cover__bar is-playing">
@@ -12,56 +12,56 @@
               </div>
             </div>
           </div>
-          <div class="player-lyric">
-            <div class="player-lyric__name">
+          <div class="lyric">
+            <div class="lyric__name">
               日不落
             </div>
-            <div class="player-lyric__desc">
+            <div class="lyric__desc">
               <span class="label">歌手：</span>
               <div class="value">
                 蔡依林
               </div>
             </div>
-            <div class="scroller player-lyric__wrap">
-              <div class="player-lyric__item" style="pointer-events: auto;">
-                <p class="player-lyric__text">
+            <div class="scroller lyric__wrap">
+              <div class="lyric__item" style="pointer-events: auto;">
+                <p class="lyric__text">
                   作词 : 崔惟楷
                 </p>
               </div>
-              <div class="player-lyric__item is-active" style="pointer-events: auto;">
-                <p class="player-lyric__text">
+              <div class="lyric__item is-active" style="pointer-events: auto;">
+                <p class="lyric__text">
                   作曲 : Alexander Bard/Magnus Bengt/Anders Hansson
                 </p>
               </div>
-              <div class="player-lyric__item" style="pointer-events: auto;">
-                <p class="player-lyric__text">
+              <div class="lyric__item" style="pointer-events: auto;">
+                <p class="lyric__text">
                   编曲 : 林迈可
                 </p>
               </div>
-              <div class="player-lyric__item" style="pointer-events: auto;">
-                <p class="player-lyric__text">
+              <div class="lyric__item" style="pointer-events: auto;">
+                <p class="lyric__text">
                   天空的雾来得漫不经心
                 </p>
               </div>
-              <div class="player-lyric__item" style="pointer-events: auto;">
-                <p class="player-lyric__text">
+              <div class="lyric__item" style="pointer-events: auto;">
+                <p class="lyric__text">
                   河水像油画一样安静
                 </p>
               </div>
-              <div class="player-lyric__item" style="pointer-events: auto;">
-                <p class="player-lyric__text">
+              <div class="lyric__item" style="pointer-events: auto;">
+                <p class="lyric__text">
                   和平鸽慵懒步伐押着韵
                 </p>
               </div>
-              <div class="player-lyric__item" style="pointer-events: auto;">
-                <p class="player-lyric__text">
+              <div class="lyric__item" style="pointer-events: auto;">
+                <p class="lyric__text">
                   心偷偷的放晴
                 </p>
               </div>
             </div>
           </div>
         </div>
-        <div class="player__comments">
+        <div class="player-lyric__comment">
           <Comment />
         </div>
       </div>
@@ -86,7 +86,7 @@ import Comment from '~/components/comment/Comment.vue'
   }
 }
 
-@include b(player) {
+@include b(player-lyric) {
   position: fixed;
   top: 50px;
   right: 0;
@@ -116,7 +116,7 @@ import Comment from '~/components/comment/Comment.vue'
     display: flex;
   }
 
-  @include e(comments) {
+  @include e(comment) {
     margin-top: 48px;
     margin-bottom: 36px;
   }
@@ -178,7 +178,7 @@ import Comment from '~/components/comment/Comment.vue'
   }
 }
 
-@include b(player-lyric) {
+@include b(lyric) {
   flex: 1;
   padding-top: 45px;
 

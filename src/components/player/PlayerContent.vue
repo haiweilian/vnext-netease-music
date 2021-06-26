@@ -21,7 +21,7 @@
 <script setup lang="ts">
 import IconSvg from '~/components/icon/IconSvg.vue'
 const togglePlayer = () => {
-  document.querySelector('.player')?.classList.toggle('is-hide')
+  document.querySelector('.player-lyric')?.classList.toggle('is-hide')
 }
 </script>
 

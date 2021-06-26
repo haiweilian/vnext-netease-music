@@ -1,15 +1,11 @@
-export interface IUserUser {
-  userId: number
-  nickname: string
-  avatarUrl: string
+import type { IUser } from '~/types'
+
+export interface IUserState {
+  user: IUser
 }
 
-export interface IUser {
-  user: IUserUser
-}
-
-const state: IUser = {
-  user: {} as IUserUser,
+const state: IUserState = {
+  user: {} as IUser,
 }
 
 export default state

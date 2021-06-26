@@ -1,4 +1,5 @@
 import { getRequest } from '../request'
+import type { IBanner } from '~/types'
 
 enum REQUEST_URL {
   Banner = '/banner',
@@ -7,12 +8,6 @@ enum REQUEST_URL {
 /**
  * @description: 获取轮播图数据
  */
-export interface IBanner {
-  imageUrl: string
-  encodeId: string
-  typeTitle: string
-}
-
 export const getBanner = (): Promise<IBanner[]> => {
   return getRequest(REQUEST_URL.Banner).then(r => r.data.banners)
 }

@@ -6,7 +6,7 @@
         <span class="desc">描述描述描述</span>
       </div>
       <div class="playlist-card__play">
-        <icon-ic:round-play-arrow />
+        <!-- <icon-ic:round-play-arrow /> -->
       </div>
     </div>
     <p class="playlist-card__name">

@@ -69,3 +69,12 @@
     border-color: #d33a31;
   }
 }
+
+/* loading
+-------------------------- */
+.el-loading,
+.el-loading-mask {
+  .el-loading-spinner .path {
+    stroke: #d33a31;
+  }
+}
