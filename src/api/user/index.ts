@@ -1,5 +1,5 @@
 import { getRequest } from '../request'
-import { translateUserPlaylist } from './translate'
+import { translateUserDetail, translateUserPlaylist } from './translate'
 import type { IMultiPageConfig } from '~/types'
 
 enum REQUEST_URL {
@@ -11,7 +11,7 @@ enum REQUEST_URL {
  * @description: 获取用户详情
  */
 export const getUserDetail = (uid: string) => {
-  return getRequest(REQUEST_URL.UserDetail, { uid }).then(r => r.data.profile)
+  return getRequest(REQUEST_URL.UserDetail, { uid }).then(translateUserDetail)
 }
 
 /**

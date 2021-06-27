@@ -1,22 +1,32 @@
 <template>
   <div class="playlist-card">
     <div class="playlist-card__inner">
-      <img class="playlist-card__cover" src="https://p2.music.126.net/NwkGak0zTrC0pI2NdEgABw==/109951165931374927.jpg?param=300y300" />
+      <img class="playlist-card__cover" :src="playlist.picUrl" />
       <div class="playlist-card__desc">
-        <span class="desc">描述描述描述</span>
+        <span class="desc">{{ playlist.playCount }}</span>
       </div>
       <div class="playlist-card__play">
-        <!-- <icon-ic:round-play-arrow /> -->
+        <IconSvg name="round-play-arrow" />
       </div>
     </div>
     <p class="playlist-card__name">
-      欧美 | 爱情里的猫鼠游戏
+      {{ playlist.name }}
     </p>
   </div>
 </template>
 
 <script setup lang="ts">
+import { defineProps } from 'vue'
+import type { PropType } from 'vue'
+import type { IPlaylist } from '~/types'
+import IconSvg from '~/components/icon/IconSvg.vue'
 
+const { playlist } = defineProps({
+  playlist: {
+    type: Object as PropType<IPlaylist>,
+    required: true,
+  },
+})
 </script>
 
 <style lang="scss" scoped>
@@ -81,6 +91,7 @@
     right: 8px;
     bottom: 8px;
     font-size: 24px;
+    line-height: 22px;
     color: #d33a31;
     text-align: center;
     background: rgba(255, 255, 255, 0.4);

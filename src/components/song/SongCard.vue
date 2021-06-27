@@ -1,28 +1,37 @@
 <template>
   <div class="song-card">
     <div class="song-card__order">
-      <span class="order">01</span>
+      <span class="order">{{ song.order }}</span>
     </div>
     <div class="song-card__cover">
-      <img class="" src="http://p4.music.126.net/Ggpf7jURLCUKKlT4qAUW4Q==/109951165929809633.jpg?param=120y120" />
+      <img class="" :src="song.picUrl" />
     </div>
     <div class="song-card__text">
-      寿阳曲·清江引·塞鸿秋
+      {{ song.name }}
     </div>
     <div class="song-card__text">
-      24kGoldn/iann dior/Lil Ghost小鬼
+      {{ song.artists }}
     </div>
     <div class="song-card__text">
-      Mood (Lil Ghost Remix)
+      {{ song.album }}
     </div>
     <div class="song-card__time">
-      04:45
+      {{ song.duration }}
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { defineProps } from 'vue'
+import type { PropType } from 'vue'
+import type { ISong } from '~/types'
 
+const { song } = defineProps({
+  song: {
+    type: Object as PropType<ISong>,
+    required: true,
+  },
+})
 </script>
 
 <style lang="scss" scoped>

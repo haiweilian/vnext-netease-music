@@ -1,0 +1,4 @@
+@hostname = http://localhost:3000
+
+# 获取轮播图数据
+GET {{hostname}}/banner HTTP/1.1

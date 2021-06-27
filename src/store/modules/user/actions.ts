@@ -23,11 +23,11 @@ const actions: ActionTree<IUserState, IUserState> = {
     }
 
     try {
-      const profile = await getUserDetail(uid)
+      const user = await getUserDetail(uid)
 
-      if (profile) {
-        commit(SET_USER, profile)
-        storage.value = profile.userId
+      if (user) {
+        commit(SET_USER, user)
+        storage.value = user.userId
       }
       else {
         return error()

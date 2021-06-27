@@ -1,0 +1,8 @@
+@hostname = http://localhost:3000
+@uid = 1787949605
+
+# 获取用户详情
+GET {{hostname}}/user/detail?uid={{uid}} HTTP/1.1
+
+# 获取用户歌单
+GET {{hostname}}/user/playlist?uid={{uid}} HTTP/1.1

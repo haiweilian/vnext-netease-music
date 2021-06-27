@@ -11,8 +11,15 @@ export interface IMultiPageConfig {
  */
 export interface IMultiPageBeforeConfig {
   limit?: string | number
-  offset?: string | number
   before?: string | number
+}
+
+/**
+ * 切换筛选
+ */
+export interface ISingleTab {
+  label: string | number
+  value: string | number
 }
 
 /**
@@ -50,4 +57,30 @@ export interface IMenuItem {
 export interface IMenu {
   name: string
   children: IMenuItem[]
+}
+
+/**
+ * 歌单详情
+ */
+export interface IPlaylist {
+  id: string
+  name: string
+  order: number
+  picUrl: string
+  playCount: string | number
+  copywriter?: string
+  description?: string
+}
+
+/**
+ * 歌曲详情
+ */
+export interface ISong {
+  id: string
+  name: string
+  order: number
+  picUrl: string
+  artists: string
+  album: string
+  duration: string | number
 }

@@ -1,10 +1,24 @@
-import { AxiosResponse } from 'axios'
-import { isEmpty } from '~/utils'
-import type { IMenu, IMenuItem } from '~/types'
+import type { AxiosResponse } from 'axios'
+import type { IUser, IMenu, IMenuItem } from '~/types'
 
-export const translateUserPlaylist = (res: AxiosResponse) => {
-  const playlist = res.data.playlist
-  if (isEmpty(playlist)) return []
+/**
+ * 转化用户信息，数据平级
+ */
+export const translateUserDetail = (res: AxiosResponse): IUser => {
+  const { profile } = res.data
+
+  return {
+    userId: profile.userId,
+    nickname: profile.nickname,
+    avatarUrl: profile.avatarUrl,
+  }
+}
+
+/**
+ * 转化用户歌单，处理创建和收藏分类、以及图标、路径处理
+ */
+export const translateUserPlaylist = (res: AxiosResponse): IMenu[] => {
+  const { playlist } = res.data
 
   const menus: IMenu[] = []
   const menuCreateList: IMenuItem[] = []
