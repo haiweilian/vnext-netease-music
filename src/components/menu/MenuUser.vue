@@ -9,7 +9,7 @@
     </div>
     <!-- 登录前 -->
     <div v-else class="menu-user__user" @click="loginVisible = true">
-      <img class="menu-user__avatar" src="http://p1.music.126.net/SUeqMM8HOIpHv9Nhl9qt9w==/109951165647004069.jpg?param=80y80" alt="">
+      <img class="menu-user__avatar" src="http://p1.music.126.net/SUeqMM8HOIpHv9Nhl9qt9w==/109951165647004069.jpg" alt="">
       <p class="menu-user__name">
         未登录
       </p>
@@ -39,17 +39,20 @@ import { ElDialog, ElInput, ElButton, ElMessage, ElMessageBox } from 'element-pl
 import { useStore } from 'vuex'
 import { useStorage } from '@vueuse/core'
 import { ref, computed, onMounted } from 'vue'
+
 import { SET_LOGIN, SET_LOGOUT } from '~/store/modules/user'
 import { GLOBAL_UID_KEY } from '~/utils/constant'
 import { isEmpty } from '~/utils'
+import type { IUser } from '~/types'
 
 const store = useStore()
 const storage = useStorage(GLOBAL_UID_KEY, '')
-const loginVisible = ref(false)
+const loginVisible = ref<boolean>(false)
 const uid = ref<string>('')
-const user = computed(() => store.state.user.user)
+const user = computed<IUser>(() => store.state.user.user)
 
 const login = async(uid: string) => {
+  // 登录登录关闭登录框
   loginVisible.value = !(await store.dispatch(SET_LOGIN, uid))
 }
 
@@ -59,11 +62,13 @@ const logout = async() => {
     cancelButtonText: '取消',
     type: 'warning',
   }).then(() => {
+    // 退出成功，初始用户信息
     store.dispatch(SET_LOGOUT) && ElMessage.success('退出成功')
   })
 }
 
 onMounted(() => {
+  // 如果已经登录过，默认执行登录获取用户信息
   if (!isEmpty(storage.value)) {
     login(storage.value)
   }

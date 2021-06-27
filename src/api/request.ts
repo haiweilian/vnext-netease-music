@@ -3,7 +3,7 @@ import { showFullScreenLoading, tryHideFullScreenLoading } from './loading'
 
 const http = axios.create({
   baseURL: import.meta.env.VITE_MUSIC_URL,
-  withCredentials: true,
+  withCredentials: false,
 })
 
 http.interceptors.request.use(

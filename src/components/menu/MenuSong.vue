@@ -1,76 +1,47 @@
 <template>
   <div class="menu-scroll">
-    <div class="menu-song">
-      <p class="menu-song__title"></p>
-      <ul class="">
-        <li class="menu-song__item is-active">
-          <IconSvg name="music" />
-          <span class="menu-song__value">
-            发现音乐
-          </span>
-        </li>
-        <li class="menu-song__item">
-          <IconSvg name="playlist" />
-          <span class="menu-song__value">
-            推荐歌单
-          </span>
-        </li>
-        <li class="menu-song__item">
-          <IconSvg name="song" />
-          <span class="menu-song__value">
-            最新音乐
-          </span>
-        </li>
-      </ul>
-    </div>
-    <div class="menu-song">
+    <div v-for="menus of menusList" :key="menus.name" class="menu-song">
       <p class="menu-song__title">
-        收藏的歌单
+        {{ menus.name }}
       </p>
-      <ul class="">
-        <li class="menu-song__item">
-          <IconSvg name="playlist" />
-          <span class="menu-song__value">
-            keep 跑步歌单『前方高能』
-          </span>
-        </li>
-        <li class="menu-song__item">
-          <IconSvg name="playlist" />
-          <span class="menu-song__value">
-            今天从《下山》听起 | 私人雷达
-          </span>
-        </li>
-        <li class="menu-song__item">
-          <IconSvg name="playlist" />
-          <span class="menu-song__value">
-            车上必听.HIFI 伤感情歌
-          </span>
-        </li>
-        <li class="menu-song__item">
-          <IconSvg name="playlist" />
-          <span class="menu-song__value">
-            21世纪头十年经典流行老歌
-          </span>
-        </li>
-        <li class="menu-song__item">
-          <IconSvg name="playlist" />
-          <span class="menu-song__value">
-            21世纪头十年经典流行老歌
-          </span>
-        </li>
-        <li class="menu-song__item">
-          <IconSvg name="playlist" />
-          <span class="menu-song__value">
-            21世纪头十年经典流行老歌
-          </span>
-        </li>
+      <ul v-for="menu of menus.children" :key="menu.link" class="">
+        <RouterLink v-slot="{navigate, isExactActive}" :to="menu.link" custom>
+          <li class="menu-song__item" :class="{'is-active': isExactActive}" @click="navigate">
+            <IconSvg :name="menu.icon" />
+            <span class="menu-song__value">
+              {{ menu.name }}
+            </span>
+          </li>
+        </RouterLink>
       </ul>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { computed, ref, watchEffect } from 'vue'
+import { useStore } from 'vuex'
+
 import IconSvg from '~/components/icon/IconSvg.vue'
+import { getUserPlaylist } from '~/api/user'
+import { localMenus } from '~/utils/local'
+import type { IUser, IMenu } from '~/types'
+
+const store = useStore()
+const user = computed<IUser>(() => store.state.user.user)
+const menusList = ref<IMenu[]>([])
+
+watchEffect(async() => {
+  if (user.value.userId) {
+    // 如果已登录，收藏加默认菜单
+    const reqMenus = await getUserPlaylist({ uid: user.value.userId })
+    menusList.value = localMenus.concat(reqMenus)
+  }
+  else {
+    // 反之，只展示默认菜单
+    menusList.value = localMenus
+  }
+})
 </script>
 
 <style lang="scss" scoped>
@@ -110,6 +81,8 @@ import IconSvg from '~/components/icon/IconSvg.vue'
 
   @include e(value) {
     margin-left: 10px;
+
+    @include text-ellipsis();
   }
 }
 </style>

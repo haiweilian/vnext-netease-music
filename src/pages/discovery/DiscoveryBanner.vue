@@ -9,10 +9,12 @@
 <script setup lang="ts">
 import { ElCarousel, ElCarouselItem } from 'element-plus'
 import { onMounted, ref } from 'vue'
+
 import { getBanner } from '~/api/base'
 import type { IBanner } from '~/types/index'
 
 const banners = ref<IBanner[]>([])
+
 onMounted(async() => {
   banners.value = await getBanner()
 })
