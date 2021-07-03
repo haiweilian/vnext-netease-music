@@ -1,0 +1,7 @@
+@hostname = http://localhost:3000
+
+# 搜索关键词
+GET {{hostname}}/search/?keywords=海阔天空&type=1 HTTP/1.1
+
+# 获取热搜简略列表
+GET {{hostname}}/search/hot HTTP/1.1

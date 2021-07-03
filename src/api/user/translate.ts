@@ -25,14 +25,14 @@ export const translateUserPlaylist = (res: AxiosResponse): IMenu[] => {
   const menuCollectList: IMenuItem[] = []
 
   // 区分分类、链接、图标
-  playlist.forEach((item: IMenuItem) => {
-    item.icon = 'playlist'
-    item.link = `/playlist/${item.id}`
-    if (res.config.params.uid === item.userId) {
-      menuCreateList.push(item)
+  playlist.forEach((playlist: IMenuItem) => {
+    playlist.icon = 'playlist'
+    playlist.link = `/playlist/${playlist.id}`
+    if (res.config.params.uid === playlist.userId) {
+      menuCreateList.push(playlist)
     }
     else {
-      menuCollectList.push(item)
+      menuCollectList.push(playlist)
     }
   })
 

@@ -1,0 +1,4 @@
+@hostname = http://localhost:3000
+
+# 获取歌词
+GET {{hostname}}/lyric?id=1845994608 HTTP/1.1

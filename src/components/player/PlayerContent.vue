@@ -1,27 +1,50 @@
 <template>
   <div class="player-content__playimg" @click="togglePlayer">
-    <img class="player-content__blur" src="https://p2.music.126.net/Uy-J-k8zSIiJds-gKqZUhA==/109951165416660748.jpg?param=80y80">
+    <img class="player-content__blur" :src="props.currentSong.picUrl">
     <div class="player-content__mask"></div>
     <IconSvg name="shrink" class="player-content__control" size="22" />
   </div>
-  <div class="player-content__playcon">
+  <div class="player-content__playcon" @click="togglePlayer">
     <div class="player-content__name">
-      <span class="">Keep You Head Up Princess</span>
+      <span class="">{{ props.currentSong.name }}</span>
       <span class="">-</span>
-      <span class="">Anson Seabra</span>
+      <span class="">{{ props.currentSong.artists }}</span>
     </div>
     <div class="player-content__time">
-      <span class="">00:00</span>
+      <span class="">{{ props.currentTime }}</span>
       <span class="">/</span>
-      <span class="">03:20</span>
+      <span class="">{{ props.duration }}</span>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { defineProps } from 'vue'
+import { useStore } from 'vuex'
+import type { PropType } from 'vue'
+
 import IconSvg from '~/components/icon/IconSvg.vue'
+import { SET_LYRIC_PAGE_STATUS } from '~/store/modules/player'
+import type { ISong } from '~/types'
+
+const props = defineProps({
+  currentSong: {
+    type: Object as PropType<ISong>,
+    required: true,
+  },
+  currentTime: {
+    type: Number,
+    required: true,
+  },
+  duration: {
+    type: Number,
+    required: true,
+  },
+})
+
+const store = useStore()
 const togglePlayer = () => {
-  document.querySelector('.player-lyric')?.classList.toggle('is-hide')
+  store.commit(SET_LYRIC_PAGE_STATUS)
 }
 </script>
 

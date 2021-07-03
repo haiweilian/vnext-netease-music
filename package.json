@@ -30,7 +30,9 @@
     "axios": "^0.21.1",
     "element-plus": "^1.0.2-beta.36",
     "lodash-es": "^4.17.21",
+    "lyric-parser": "^1.0.1",
     "vue": "^3.0.10",
+    "vue-lazyload-next": "^0.0.2",
     "vue-router": "^4.0.5",
     "vuex": "4.0.2"
   },

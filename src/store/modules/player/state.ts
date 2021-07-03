@@ -1,13 +1,13 @@
+import type { ISong } from '~/types'
+
 export interface IPlayerState {
-  playingStatus: boolean
-  currentIndex: number
-  currentSong: any
+  currentSong: ISong
+  lyricPageStatus: boolean
 }
 
 const state: IPlayerState = {
-  playingStatus: false,
-  currentIndex: -1,
-  currentSong: null,
+  currentSong: {} as ISong,
+  lyricPageStatus: false,
 }
 
 export default state

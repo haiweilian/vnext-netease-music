@@ -21,7 +21,7 @@ import type { ISong } from '~/types'
 const songs = ref<ISong[]>([])
 
 onMounted(async() => {
-  songs.value = await getPersonalizedNewsong(10)
+  songs.value = await getPersonalizedNewsong({ limit: 10 })
 })
 </script>
 

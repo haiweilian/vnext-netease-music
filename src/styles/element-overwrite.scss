@@ -74,6 +74,10 @@
 -------------------------- */
 .el-loading,
 .el-loading-mask {
+  .el-loading-text {
+    color: #d33a31;
+  }
+
   .el-loading-spinner .path {
     stroke: #d33a31;
   }

@@ -1,27 +1,16 @@
 <template>
-  <PlaylistHeader />
+  <PlaylistHeader :playlist="playlist" />
   <div class="result">
-    <ElTabs v-model="activeName" @tab-click="handleClick">
+    <ElTabs v-model="activeName">
       <ElTabPane label="歌曲列表" name="song">
-        <SongCard />
-        <SongCard />
-        <SongCard />
-        <SongCard />
-        <SongCard />
-        <SongCard />
-        <SongCard />
-        <SongCard />
-        <SongCard />
-        <SongCard />
-        <SongCard />
-        <SongCard />
-        <SongCard />
-        <SongCard />
-        <SongCard />
-        <SongCard />
+        <SongCard
+          v-for="song of playlist.songs"
+          :key="song.id"
+          :song="song"
+        />
       </ElTabPane>
-      <ElTabPane label="评论(4882)" name="comment">
-        <Comment />
+      <ElTabPane :label="`评论(${playlist.commentCount})`" name="comment">
+        <Comment :id="playlistId" :type="CommentType.playlist" />
       </ElTabPane>
     </ElTabs>
   </div>
@@ -29,13 +18,31 @@
 
 <script setup lang="ts">
 import { ElTabs, ElTabPane } from 'element-plus'
-import { ref } from 'vue'
+import { onMounted, ref, watch, computed } from 'vue'
+import { useRoute } from 'vue-router'
+
 import PlaylistHeader from './PlaylistHeader.vue'
 import SongCard from '~/components/song/SongCard.vue'
 import Comment from '~/components/comment/Comment.vue'
 
-const activeName = ref('song')
-const handleClick = (tab: string, event: Event) => {
-  // console.log(tab, event)
+import { getPlaylistDetail } from '~/api/playlist'
+import { CommentType } from '~/utils/constant'
+import type { IPlaylistDetail } from '~/types'
+
+const route = useRoute()
+const activeName = ref<string>('song')
+const playlist = ref<IPlaylistDetail>({} as IPlaylistDetail)
+const playlistId = computed<string>(() => (route.params.id as string))
+
+const playlistDetail = async() => {
+  playlist.value = await getPlaylistDetail({ id: playlistId.value })
 }
+
+watch(() => route.params, () => {
+  playlistDetail()
+})
+
+onMounted(() => {
+  playlistDetail()
+})
 </script>

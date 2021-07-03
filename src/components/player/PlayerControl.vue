@@ -3,7 +3,7 @@
     <IconSvg name="player-prev" size="22" />
   </div>
   <div class="player-control__play">
-    <IconSvg name="player-pause" size="50" />
+    <IconSvg :name="status" size="50" @click="changeStatus" />
   </div>
   <div class="player-control__next">
     <IconSvg name="player-next" size="22" />
@@ -11,7 +11,23 @@
 </template>
 
 <script setup lang="ts">
+import { computed, defineProps, defineEmit } from 'vue'
 import IconSvg from '~/components/icon/IconSvg.vue'
+
+const props = defineProps({
+  playing: {
+    type: Boolean,
+    required: true,
+  },
+})
+
+const emits = defineEmit(['update:playing'])
+
+const status = computed(() => props.playing ? 'player-pause' : 'player-play')
+const changeStatus = () => {
+  emits('update:playing', !props.playing)
+}
+
 </script>
 
 <style lang="scss" scoped>

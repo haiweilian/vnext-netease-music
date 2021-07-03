@@ -4,7 +4,9 @@ dependencies:
   axios: 0.21.1
   element-plus: 1.0.2-beta.51_vue@3.1.2
   lodash-es: 4.17.21
+  lyric-parser: 1.0.1
   vue: 3.1.2
+  vue-lazyload-next: 0.0.2
   vue-router: 4.0.10_vue@3.1.2
   vuex: 4.0.2_vue@3.1.2
 devDependencies:
@@ -4311,6 +4313,10 @@ packages:
       node: '>=10'
     resolution:
       integrity: sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==
+  /lyric-parser/1.0.1:
+    dev: false
+    resolution:
+      integrity: sha1-ofiqd2U8+Ufs+U31HV+Bavye1Ew=
   /magic-string/0.25.7:
     dependencies:
       sourcemap-codec: 1.4.8
@@ -6948,6 +6954,10 @@ packages:
       eslint: '>=5.0.0'
     resolution:
       integrity: sha512-QXxqH8ZevBrtiZMZK0LpwaMfevQi9UL7lY6Kcp+ogWHC88AuwUPwwCIzkOUc1LR4XsYAt/F9yHXAB/QoD17QXA==
+  /vue-lazyload-next/0.0.2:
+    dev: false
+    resolution:
+      integrity: sha512-mejBH5KmYG5ieRVHRImC/GHsJ4GCJN/Oyvf1mlQNzpEHgeve0PRjNqpLRdwHrD1BL7SjD49T1I3Z7Ilarq9miQ==
   /vue-router/4.0.10_vue@3.1.2:
     dependencies:
       '@vue/devtools-api': 6.0.0-beta.14
@@ -7123,6 +7133,7 @@ specifiers:
   https-localhost: ^4.6.4
   husky: ^6.0.0
   lodash-es: ^4.17.21
+  lyric-parser: ^1.0.1
   pnpm: ^5.18.9
   sass: ^1.32.8
   standard-version: ^9.1.1
@@ -7138,5 +7149,6 @@ specifiers:
   vite-plugin-style-import: ^1.0.0
   vite-plugin-svg-icons: 1.0.0
   vue: ^3.0.10
+  vue-lazyload-next: ^0.0.2
   vue-router: ^4.0.5
   vuex: 4.0.2

@@ -10,8 +10,8 @@ enum REQUEST_URL {
 /**
  * @description: 获取用户详情
  */
-export const getUserDetail = (uid: string) => {
-  return getRequest(REQUEST_URL.UserDetail, { uid }).then(translateUserDetail)
+export const getUserDetail = (params: {uid: string}) => {
+  return getRequest(REQUEST_URL.UserDetail, params).then(translateUserDetail)
 }
 
 /**

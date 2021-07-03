@@ -1,29 +1,29 @@
 <template>
   <div class="detail-header">
     <div class="detail-header__cover">
-      <img src="https://p1.music.126.net/1pLqU2jsPzA3JPc2vjz_sQ==/3315027558816913.jpg?param=400y400">
+      <img :src="playlist.coverImgUrl">
     </div>
     <div class="detail-header__content">
       <div>
         <div class="detail-header__title">
-          21世纪头十年经典流行老歌
+          {{ playlist.name }}
         </div>
         <div class="detail-header__creator">
-          <img class="avatar" src="http://p1.music.126.net/4ZjO1oj0WTeN5U19FpnQFw==/109951165005238078.jpg">
+          <img class="avatar" :src="playlist.avatarUrl">
           <p class="creator">
-            云音乐私人雷达
+            {{ playlist.name }}
           </p>
           <p class="time">
-            2019-12-26 创建
+            {{ playlist.createTime }} 创建
           </p>
         </div>
       </div>
       <div class="detail-header__desc">
         <p class="desc">
-          标签：怀旧/经典/流行
+          标签：{{ playlist.tags }}
         </p>
         <p class="desc">
-          简介：你爱的歌，值得反复聆听私人雷达，每日更新，收藏你的最爱
+          简介：{{ playlist.description }}
         </p>
       </div>
     </div>
@@ -31,7 +31,17 @@
 </template>
 
 <script setup lang="ts">
+import { defineProps, toRef } from 'vue'
+import type { PropType } from 'vue'
+import type { IPlaylistDetail } from '~/types'
 
+const props = defineProps({
+  playlist: {
+    type: Object as PropType<IPlaylistDetail>,
+    required: true,
+  },
+})
+const playlist = toRef(props, 'playlist')
 </script>
 
 <style lang="scss" scoped>

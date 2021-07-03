@@ -1,7 +1,7 @@
 <template>
   <div class="playlist-card">
     <div class="playlist-card__inner">
-      <img class="playlist-card__cover" :src="playlist.picUrl" />
+      <img v-lazy="playlist.picUrl" class="playlist-card__cover" />
       <div class="playlist-card__desc">
         <span class="desc">{{ playlist.playCount }}</span>
       </div>

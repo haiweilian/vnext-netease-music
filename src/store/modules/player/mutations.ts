@@ -1,13 +1,14 @@
 import type { MutationTree } from 'vuex'
 import type { IPlayerState } from './state'
-import { SET_PLAYING_STATUS, SET_CURRENT_SONG } from './constant'
+import { SET_CURRENT_SONG, SET_LYRIC_PAGE_STATUS } from './constant'
+import type { ISong } from '~/types'
 
 const mutations: MutationTree<IPlayerState> = {
-  [SET_PLAYING_STATUS](state, payload: boolean) {
-    state.playingStatus = payload
-  },
-  [SET_CURRENT_SONG](state, payload: any) {
+  [SET_CURRENT_SONG](state, payload: ISong) {
     state.currentSong = payload
+  },
+  [SET_LYRIC_PAGE_STATUS](state, payload: boolean) {
+    state.lyricPageStatus = payload === undefined ? !state.lyricPageStatus : payload
   },
 }
 

@@ -21,7 +21,7 @@ import type { IPlaylist } from '~/types'
 const playlists = ref<IPlaylist[]>([])
 
 onMounted(async() => {
-  playlists.value = await getPersonalizedPlaylist(10)
+  playlists.value = await getPersonalizedPlaylist({ limit: 10 })
 })
 </script>
 

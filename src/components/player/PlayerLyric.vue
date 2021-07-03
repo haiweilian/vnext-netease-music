@@ -1,6 +1,6 @@
 <template>
   <teleport to="#app">
-    <div class="player-lyric is-hide">
+    <div v-show="lyricPageStatus" class="player-lyric">
       <div class="player-lyric__content">
         <div class="player-lyric__song">
           <div class="player-cover">
@@ -22,47 +22,17 @@
                 蔡依林
               </div>
             </div>
-            <div class="scroller lyric__wrap">
-              <div class="lyric__item" style="pointer-events: auto;">
+            <div ref="listRef" class="scroller lyric__wrap">
+              <div v-for="(line, index) of lines" :ref="setItemRef" :key="line.time" class="lyric__item" :class="{'is-active': linexxx === index}">
                 <p class="lyric__text">
-                  作词 : 崔惟楷
-                </p>
-              </div>
-              <div class="lyric__item is-active" style="pointer-events: auto;">
-                <p class="lyric__text">
-                  作曲 : Alexander Bard/Magnus Bengt/Anders Hansson
-                </p>
-              </div>
-              <div class="lyric__item" style="pointer-events: auto;">
-                <p class="lyric__text">
-                  编曲 : 林迈可
-                </p>
-              </div>
-              <div class="lyric__item" style="pointer-events: auto;">
-                <p class="lyric__text">
-                  天空的雾来得漫不经心
-                </p>
-              </div>
-              <div class="lyric__item" style="pointer-events: auto;">
-                <p class="lyric__text">
-                  河水像油画一样安静
-                </p>
-              </div>
-              <div class="lyric__item" style="pointer-events: auto;">
-                <p class="lyric__text">
-                  和平鸽慵懒步伐押着韵
-                </p>
-              </div>
-              <div class="lyric__item" style="pointer-events: auto;">
-                <p class="lyric__text">
-                  心偷偷的放晴
+                  {{ line.txt }}
                 </p>
               </div>
             </div>
           </div>
         </div>
         <div class="player-lyric__comment">
-          <Comment />
+          <Comment v-if="props.currentSong.id" :id="props.currentSong.id" :type="CommentType.song" />
         </div>
       </div>
     </div>
@@ -70,9 +40,79 @@
 </template>
 
 <script setup lang="ts">
+import { computed, defineProps, ref, onMounted, watch } from 'vue'
+import { useStore } from 'vuex'
+import Lyric from 'lyric-parser'
+import type { PropType } from 'vue'
+
 import PlayBar from '~/assets/image/play-bar.png'
 import PlayBarSupport from '~/assets/image/play-bar-support.png'
 import Comment from '~/components/comment/Comment.vue'
+import { getLyric } from '~/api/player'
+import { CommentType } from '~/utils/constant'
+import type { ISong } from '~/types'
+
+const props = defineProps({
+  currentSong: {
+    type: Object as PropType<ISong>,
+    required: true,
+  },
+})
+
+/**
+ * 是否展示歌词
+ */
+const store = useStore()
+const lyricPageStatus = computed<boolean>(() => store.state.player.lyricPageStatus)
+
+/**
+ * 歌词处理
+ */
+const linexxx = ref(-1)
+const lines = ref<any>([])
+onMounted(async() => {
+  const res = await getLyric({
+    id: 1855423946,
+  })
+  console.log('11111', res)
+
+  lines.value = res.lines
+
+  function hanlder({ lineNum, txt }: any) {
+    console.log(lineNum, txt)
+    linexxx.value = lineNum
+  // this hanlder called when lineNum change
+  }
+  const lyric = new Lyric(res.lrc.lyric, hanlder)
+
+  lines.value = lyric.lines
+  console.log('222', lyric)
+  lyric.play()
+})
+
+const listRef = ref()
+const lyricLineRefs = ref<HTMLElement[]>([])
+
+/**
+     * 给歌词列表动态分配ref
+     */
+const setItemRef = (el: HTMLElement): void => {
+  lyricLineRefs.value.push(el)
+}
+
+watch(linexxx,
+  (lineNum: number) => {
+    const listDom = listRef.value as HTMLElement
+    if (!listDom || !lineNum) return
+    if (lineNum > 4) {
+      const curLineDom = lyricLineRefs.value[lineNum - 4]
+      listDom.scrollTop = curLineDom.offsetTop
+    }
+    else {
+      listDom.scrollTop = 0
+    }
+  },
+)
 </script>
 
 <style lang="scss" scoped>
@@ -208,7 +248,8 @@ import Comment from '~/components/comment/Comment.vue'
 
   @include e(wrap) {
     width: 380px;
-    height: 350px;
+    height: 220px;
+    overflow: hidden;
     mask-image:
       linear-gradient(
         180deg,

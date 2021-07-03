@@ -1,0 +1,7 @@
+@hostname = http://localhost:3000
+
+# 查询对应资源热门评论
+GET {{hostname}}/comment/hot?id=186016&type=0 HTTP/1.1
+
+# 查询对应资源的评论
+GET {{hostname}}/comment/new?id=186016&type=0&sortType=3 HTTP/1.1

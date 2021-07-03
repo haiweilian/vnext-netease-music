@@ -11,6 +11,7 @@ export interface IMultiPageConfig {
  */
 export interface IMultiPageBeforeConfig {
   limit?: string | number
+  offset?: string | number
   before?: string | number
 }
 
@@ -18,7 +19,7 @@ export interface IMultiPageBeforeConfig {
  * 切换筛选
  */
 export interface ISingleTab {
-  label: string | number
+  label: string
   value: string | number
 }
 
@@ -26,8 +27,8 @@ export interface ISingleTab {
  * 首页 Banner
  */
 export interface IBanner {
+  url: string
   imageUrl: string
-  encodeId: string
   typeTitle: string
 }
 
@@ -47,8 +48,8 @@ export interface IMenuItem {
   name: string
   icon: string
   link: string
-  id?: string | number
-  userId?: string | number
+  id?: number
+  userId?: number
 }
 
 /**
@@ -63,11 +64,11 @@ export interface IMenu {
  * 歌单详情
  */
 export interface IPlaylist {
-  id: string
+  id: number
   name: string
   order: number
   picUrl: string
-  playCount: string | number
+  playCount: number
   copywriter?: string
   description?: string
 }
@@ -76,11 +77,41 @@ export interface IPlaylist {
  * 歌曲详情
  */
 export interface ISong {
-  id: string
+  id: number
   name: string
   order: number
   picUrl: string
   artists: string
   album: string
-  duration: string | number
+  duration: number
+}
+
+/**
+ * 歌单详情
+ */
+export interface IPlaylistDetail {
+  id: number
+  name: string
+  createTime: number
+  coverImgUrl: string
+  description: string
+  avatarUrl: string
+  nickname: string
+  commentCount: number
+  tags: string
+  songs: ISong[]
+}
+
+/**
+ * 资源评论
+ */
+export interface IComment {
+  id: number
+  nickname: string
+  avatarUrl: string
+  content: string
+  time: number
+  likedCount: number
+  repliedNickname: string
+  repliedContent: string
 }

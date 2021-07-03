@@ -1,10 +1,10 @@
 <template>
-  <div class="song-card">
+  <div class="song-card" @click="setCurrentPlaySong">
     <div class="song-card__order">
       <span class="order">{{ song.order }}</span>
     </div>
     <div class="song-card__cover">
-      <img class="" :src="song.picUrl" />
+      <img v-lazy="song.picUrl" class="" />
     </div>
     <div class="song-card__text">
       {{ song.name }}
@@ -23,7 +23,10 @@
 
 <script setup lang="ts">
 import { defineProps } from 'vue'
+import { useStore } from 'vuex'
 import type { PropType } from 'vue'
+
+import { SET_CURRENT_SONG } from '~/store/modules/player'
 import type { ISong } from '~/types'
 
 const { song } = defineProps({
@@ -32,6 +35,12 @@ const { song } = defineProps({
     required: true,
   },
 })
+
+// 设置播放的音乐
+const store = useStore()
+const setCurrentPlaySong = () => {
+  store.commit(SET_CURRENT_SONG, song)
+}
 </script>
 
 <style lang="scss" scoped>

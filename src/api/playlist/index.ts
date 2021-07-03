@@ -3,6 +3,8 @@ import {
   translatePersonalizedPlaylist,
   translatePersonalizedNewsong,
   translateTopPlaylist,
+  translateTopSong,
+  translatePlaylistDetail,
 } from './translate'
 import type { IMultiPageConfig, IMultiPageBeforeConfig } from '~/types'
 
@@ -11,21 +13,23 @@ enum REQUEST_URL {
   PersonalizedNewsong = 'personalized/newsong',
   TopPlaylist = '/top/playlist',
   TopPlaylistHighquality = '/top/playlist/highquality',
-  TopSong = 'top/song'
+  TopSong = 'top/song',
+  PlaylistDetail = '/playlist/detail',
+  SongDetail = '/song/detail'
 }
 
 /**
  * @description: 获取推荐歌单
  */
-export const getPersonalizedPlaylist = (limit?: number) => {
-  return getRequest(REQUEST_URL.PersonalizedPlaylist, { limit }).then(translatePersonalizedPlaylist)
+export const getPersonalizedPlaylist = (params?: {limit?: number}) => {
+  return getRequest(REQUEST_URL.PersonalizedPlaylist, params).then(translatePersonalizedPlaylist)
 }
 
 /**
  * @description: 获取推荐新音乐
  */
-export const getPersonalizedNewsong = (limit?: number) => {
-  return getRequest(REQUEST_URL.PersonalizedNewsong, { limit }).then(translatePersonalizedNewsong)
+export const getPersonalizedNewsong = (params?: {limit?: number}) => {
+  return getRequest(REQUEST_URL.PersonalizedNewsong, params).then(translatePersonalizedNewsong)
 }
 
 /**
@@ -45,6 +49,20 @@ export const getTopPlaylistHighquality = (params?: {cat?: string} & IMultiPageBe
 /**
  * @description: 获取获取新歌速递
  */
-export const getTopSong = () => {
-  return getRequest(REQUEST_URL.TopSong).then(r => r.data)
+export const getTopSong = (params: {type: string | number}) => {
+  return getRequest(REQUEST_URL.TopSong, params).then(translateTopSong)
+}
+
+/**
+ * @description: 获取歌单详情
+ */
+export const getPlaylistDetail = (params: {id: string; s?: string}) => {
+  return getRequest(REQUEST_URL.PlaylistDetail, params).then(translatePlaylistDetail)
+}
+
+/**
+ * @description: 获取歌曲详情
+ */
+export const getSongDetail = (params: {ids: string}) => {
+  return getRequest(REQUEST_URL.SongDetail, params)
 }

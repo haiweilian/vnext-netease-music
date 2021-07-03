@@ -1,6 +1,6 @@
 <template>
   <ElCarousel type="card" height="200px">
-    <ElCarouselItem v-for="item of banners" :key="item.encodeId">
+    <ElCarouselItem v-for="item of banners" :key="item.imageUrl">
       <img class="banner-cover" :src="item.imageUrl" :alt="item.typeTitle">
     </ElCarouselItem>
   </ElCarousel>

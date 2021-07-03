@@ -1,6 +1,10 @@
 <template>
   <PlaylistIntro />
-  <Tab v-model="currentTab" :tab="localPlaylistTabs" @change="topPlaylist" />
+  <Tab
+    v-model="currentTab"
+    :tab="localPlaylistTabs"
+    @change="topPlaylist"
+  />
   <div class="result">
     <PlaylistCard
       v-for="playlist of playlists"
@@ -25,6 +29,7 @@ import { ref, onMounted } from 'vue'
 import PlaylistIntro from './PlaylistIntro.vue'
 import Tab from '~/components/tab/Tab.vue'
 import PlaylistCard from '~/components/playlist/PlaylistCard.vue'
+
 import { getTopPlaylist } from '~/api/playlist'
 import { localPlaylistTabs } from '~/utils/local'
 import type { IPlaylist } from '~/types'

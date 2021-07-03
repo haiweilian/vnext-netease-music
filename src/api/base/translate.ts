@@ -7,11 +7,11 @@ import type { IBanner } from '~/types'
 export const translateBanner = (res: AxiosResponse): IBanner[] => {
   const { banners } = res.data
 
-  return banners.map((item: IBanner) => {
+  return banners.map((banner: IBanner) => {
     return {
-      imageUrl: item.imageUrl,
-      encodeId: item.encodeId,
-      typeTitle: item.typeTitle,
+      url: banner.url,
+      imageUrl: banner.imageUrl,
+      typeTitle: banner.typeTitle,
     }
   })
 }

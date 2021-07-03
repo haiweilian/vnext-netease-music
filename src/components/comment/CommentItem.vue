@@ -1,41 +1,23 @@
 <template>
   <div class="comment">
     <div class="comment__avatar">
-      <img src="https://p3.music.126.net/mRTBEk1BobVhcOZKvqNHQA==/18600438207459189.jpg?param=80y80">
+      <img v-lazy="comment.avatarUrl">
     </div>
     <div class="comment__content is-border">
       <div class="comment__text">
-        <span class="username">SUSJAVY:</span>
-        <span class="text">九零后那慢慢的回忆，当初差不多就是听着这里面的歌曲长大的</span>
+        <span class="username">{{ comment.nickname }}:</span><span class="text">{{ comment.content }}</span>
       </div>
-      <div class="comment__info">
-        <span class="date">2016-02-17 13:02:10</span>
-        <div class="actions">
-          <IconSvg name="thumb" />
-          <span>2881</span>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="comment">
-    <div class="comment__avatar">
-      <img src="https://p3.music.126.net/blIgbRCO9XCji4xRLwdxAg==/18967675091172056.jpg?param=80y80">
-    </div>
-    <div class="comment__content is-border">
-      <div class="comment__text">
-        <span class="username">李沐暄:</span><span class="text">我也是亳州的</span>
-      </div>
-      <div class="comment__replied">
+      <div v-if="comment.repliedNickname" class="comment__replied">
         <div class="comment__text">
-          <span class="username">亳州市最后的老实人:</span>
-          <span class="text">21世纪头十年...再过一个多月就头二十年了[流泪]</span>
+          <span class="username">{{ comment.repliedNickname }}:</span>
+          <span class="text">{{ comment.repliedContent }}</span>
         </div>
       </div>
       <div class="comment__info">
-        <span class="date">2020-06-29 18:48:38</span>
+        <span class="date">{{ comment.time }}</span>
         <div class="actions">
           <IconSvg name="thumb" />
-          <span>2881</span>
+          <span>{{ comment.likedCount }}</span>
         </div>
       </div>
     </div>
@@ -43,7 +25,19 @@
 </template>
 
 <script setup lang="ts">
+import { defineProps, toRef } from 'vue'
+import type { PropType } from 'vue'
+
 import IconSvg from '~/components/icon/IconSvg.vue'
+import type { IComment } from '~/types'
+
+const props = defineProps({
+  comment: {
+    type: Object as PropType<IComment>,
+    required: true,
+  },
+})
+const comment = toRef(props, 'comment')
 </script>
 
 <style lang="scss" scoped>

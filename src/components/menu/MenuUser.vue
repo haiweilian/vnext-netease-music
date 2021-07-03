@@ -15,7 +15,7 @@
       </p>
     </div>
     <!-- UID登录 -->
-    <ElDialog v-model="loginVisible" title="登录" width="500px" append-to-body>
+    <ElDialog v-model="loginVisible" title="登录" width="500px" :append-to-body="true">
       <div class="">
         <ElInput v-model="uid" placeholder="请输入您的网易云uid" />
         <div class="menu-user__uid">
@@ -51,24 +51,24 @@ const loginVisible = ref<boolean>(false)
 const uid = ref<string>('')
 const user = computed<IUser>(() => store.state.user.user)
 
+// 登录登录关闭登录框
 const login = async(uid: string) => {
-  // 登录登录关闭登录框
   loginVisible.value = !(await store.dispatch(SET_LOGIN, uid))
 }
 
+// 退出成功，初始用户信息
 const logout = async() => {
   ElMessageBox.confirm('确定退出登录?', '提示', {
     confirmButtonText: '确定',
     cancelButtonText: '取消',
     type: 'warning',
   }).then(() => {
-    // 退出成功，初始用户信息
     store.dispatch(SET_LOGOUT) && ElMessage.success('退出成功')
   })
 }
 
+// 如果已经登录过，默认执行登录获取用户信息
 onMounted(() => {
-  // 如果已经登录过，默认执行登录获取用户信息
   if (!isEmpty(storage.value)) {
     login(storage.value)
   }

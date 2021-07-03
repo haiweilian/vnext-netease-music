@@ -14,3 +14,9 @@ GET {{hostname}}/top/playlist/highquality HTTP/1.1
 
 # 获取获取新歌速递
 GET {{hostname}}/top/song HTTP/1.1
+
+# 获取歌单详情
+GET {{hostname}}/playlist/detail?id=3136952023 HTTP/1.1
+
+# 获取歌曲详情
+GET {{hostname}}/song/detail?ids=1427471795,28978321 HTTP/1.1

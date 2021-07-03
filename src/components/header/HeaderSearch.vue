@@ -1,48 +1,87 @@
 <template>
-  <div class="">
-    <ElInput v-model="search" placeholder="搜索" suffix-icon="el-icon-search" @focus="isSearch = true" @blur="isSearch = false" />
-    <teleport to="#app">
-      <div v-show="isSearch" class="search">
-        <p class="search__title">
-          热门搜索
-        </p>
-        <div class="search__tags">
-          <span class="search__tag">可乐</span>
-          <span class="search__tag">闲玩</span>
-          <span class="search__tag">还是会想你</span>
-          <span class="search__tag">起风了</span>
-          <span class="search__tag">错位时空</span>
-          <span class="search__tag">可乐</span>
-          <span class="search__tag">闲玩</span>
-          <span class="search__tag">还是会想你</span>
-          <span class="search__tag">起风了</span>
-          <span class="search__tag">错位时空</span>
-        </div>
-        <p class="search__title">
-          搜索历史
-        </p>
-        <div class="search__tags">
-          <span class="search__tag">可乐</span>
-          <span class="search__tag">闲玩</span>
-          <span class="search__tag">还是会想你</span>
-          <span class="search__tag">起风了</span>
-          <span class="search__tag">错位时空</span>
-          <span class="search__tag">可乐</span>
-          <span class="search__tag">闲玩</span>
-          <span class="search__tag">还是会想你</span>
-          <span class="search__tag">起风了</span>
-          <span class="search__tag">错位时空</span>
-        </div>
+  <ElInput
+    v-model="search"
+    placeholder="搜索"
+    suffix-icon="el-icon-search"
+    @focus="isSearch = true"
+    @keyup.enter="goSearch(search, true)"
+  />
+  <!-- 传入到最外层 -->
+  <teleport to="#app">
+    <div v-show="isSearch" ref="outside" class="search">
+      <p class="search__title">
+        热门搜索
+      </p>
+      <div class="search__tags">
+        <span
+          v-for="hot of hots"
+          :key="hot"
+          class="search__tag"
+          @click="goSearch(hot, true)"
+        >
+          {{ hot }}
+        </span>
       </div>
-    </teleport>
-  </div>
+      <p class="search__title">
+        搜索历史
+      </p>
+      <div class="search__tags">
+        <span
+          v-for="hot of storage"
+          :key="hot"
+          class="search__tag"
+          @click="goSearch(hot)"
+        >
+          {{ hot }}
+        </span>
+      </div>
+    </div>
+  </teleport>
 </template>
 
 <script setup lang="ts">
 import { ElInput } from 'element-plus'
-import { ref } from 'vue'
-const search = ref('')
-const isSearch = ref(false)
+import { ref, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+import { useStorage, onClickOutside } from '@vueuse/core'
+
+import { getSearchHot } from '~/api/search'
+import { isEmpty } from '~/utils'
+import { GLOBAL_SEARCH_HOT_KEY } from '~/utils/constant'
+
+/**
+ * "onClickOutside" 监听元素外的点击，再合适的实际关闭搜索框
+ */
+const search = ref<string>('')
+const isSearch = ref<boolean>(false)
+const outside = ref(null)
+onClickOutside(outside, () => {
+  isSearch.value = false
+})
+
+/**
+ * 跳转到搜索页，并存储历史记录
+ */
+const hots = ref<string[]>([])
+const router = useRouter()
+const storage = useStorage<string[]>(GLOBAL_SEARCH_HOT_KEY, [])
+const goSearch = (keyword: string, history = false) => {
+  if (isEmpty(keyword)) {
+    return
+  }
+
+  isSearch.value = false
+  router.push(`/search/${keyword}`)
+
+  if (history) {
+    storage.value.unshift(keyword)
+    storage.value = [...new Set(storage.value)]
+  }
+}
+
+onMounted(async() => {
+  hots.value = await getSearchHot()
+})
 </script>
 
 <style lang="scss" scoped>

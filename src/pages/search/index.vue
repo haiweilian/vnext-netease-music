@@ -1,9 +1,9 @@
 <template>
   <div class="search-header">
-    <span class="search-header__keywords">日不落</span>
+    <span class="search-header__keywords">{{ keywords }}</span>
     <span class="search-header__found">找到300个结果</span>
   </div>
-  <ElTabs v-model="activeName" @tab-click="handleClick">
+  <ElTabs v-model="activeName">
     <ElTabPane label="歌曲" name="song">
       <SearchSong />
     </ElTabPane>
@@ -15,14 +15,15 @@
 
 <script setup lang="ts">
 import { ElTabs, ElTabPane } from 'element-plus'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
+import { useRoute } from 'vue-router'
+
 import SearchSong from './SearchSong.vue'
 import SearchPlaylist from './SearchPlaylist.vue'
 
-const activeName = ref('song')
-const handleClick = (tab: string, event: Event) => {
-  // console.log(tab, event)
-}
+const route = useRoute()
+const keywords = computed<string>(() => route.params.keywords as string)
+const activeName = ref<string>('song')
 </script>
 
 <style lang="scss" scoped>

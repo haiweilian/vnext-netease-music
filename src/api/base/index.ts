@@ -6,7 +6,7 @@ enum REQUEST_URL {
 }
 
 /**
- * 获取轮播图数据
+ * @description: 获取轮播图数据
  */
 export const getBanner = () => {
   return getRequest(REQUEST_URL.Banner).then(translateBanner)

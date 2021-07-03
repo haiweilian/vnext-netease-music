@@ -16,8 +16,7 @@ import { ref, defineProps, defineEmit, watchEffect } from 'vue'
 import type { PropType } from 'vue'
 import type { ISingleTab } from '~/types'
 
-// 定义接受和发布
-const emits = defineEmit(['update:modelValue', 'change'])
+// 定义接收和发布
 const props = defineProps({
   tab: {
     type: Object as PropType<ISingleTab[]>,
@@ -28,6 +27,7 @@ const props = defineProps({
     default: '',
   },
 })
+const emits = defineEmit(['update:modelValue', 'change'])
 
 // 切换更新通知
 const currentValue = ref<string | number>('')

@@ -21,7 +21,7 @@ const routes: RouteRecordRaw[] = [
         component: () => import('~/pages/playlist-detail/index.vue'),
       },
       {
-        path: '/search/:id',
+        path: '/search/:keywords',
         component: () => import('~/pages/search/index.vue'),
       },
       {

@@ -1,27 +1,36 @@
 <template>
-  <Tab />
+  <Tab
+    v-model="currentTab"
+    :tab="localSongTabs"
+    @change="topSong"
+  />
   <div class="content">
-    <SongCard />
-    <SongCard />
-    <SongCard />
-    <SongCard />
-    <SongCard />
-    <SongCard />
-    <SongCard />
-    <SongCard />
-    <SongCard />
-    <SongCard />
-    <SongCard />
-    <SongCard />
-    <SongCard />
-    <SongCard />
-    <SongCard />
-    <SongCard />
-    <SongCard />
+    <SongCard
+      v-for="song of songs"
+      :key="song.id"
+      :song="song"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
+import { onMounted, ref } from 'vue'
+
 import Tab from '~/components/tab/Tab.vue'
 import SongCard from '~/components/song/SongCard.vue'
+
+import { getTopSong } from '~/api/playlist'
+import { localSongTabs } from '~/utils/local'
+import type { ISong } from '~/types'
+
+const songs = ref<ISong[]>([])
+const currentTab = ref<string | number>(localSongTabs[0]?.value)
+
+const topSong = async() => {
+  songs.value = await getTopSong({ type: currentTab.value })
+}
+
+onMounted(() => {
+  topSong()
+})
 </script>

@@ -23,7 +23,7 @@ const actions: ActionTree<IUserState, IUserState> = {
     }
 
     try {
-      const user = await getUserDetail(uid)
+      const user = await getUserDetail({ uid })
 
       if (user) {
         commit(SET_USER, user)
