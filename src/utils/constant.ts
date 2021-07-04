@@ -1,12 +1,12 @@
 /**
  * 全局用户标识名称
  */
-export const GLOBAL_UID_KEY = 'vue-netease-music-uid'
+export const GLOBAL_UID_KEY = 'vnext-netease-music-uid'
 
 /**
  * 全局搜索历史
  */
-export const GLOBAL_SEARCH_HOT_KEY = 'vue-netease-music-search-hot'
+export const GLOBAL_SEARCH_HOT_KEY = 'vnext-netease-music-search-hot'
 
 /**
  * 订阅/取消订阅
@@ -29,14 +29,6 @@ export enum CommentType {
   dj = '4',
   video = '5',
   event = '6',
-}
-
-/**
- * 评论转换类型
- */
-export enum CommentTrans {
-  Hot = 'hot',
-  New = 'new'
 }
 
 /**

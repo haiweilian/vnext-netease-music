@@ -1,6 +1,9 @@
 <template>
+  <!-- Banner -->
   <DiscoveryBanner />
+  <!-- 推荐歌单 -->
   <DiscoveryPlaylist />
+  <!-- 最新音乐 -->
   <DiscoverySong />
 </template>
 

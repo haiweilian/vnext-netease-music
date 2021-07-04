@@ -13,7 +13,6 @@
     <div class="comment__block">
       <p class="comment__title">
         最新评论
-        <span class="comment__count">11111</span>
       </p>
       <CommentItem
         v-for="comment of commentsNew"
@@ -34,7 +33,7 @@
 
 <script setup lang="ts">
 import { ElPagination } from 'element-plus'
-import { defineProps, watchEffect, ref } from 'vue'
+import { defineProps, onMounted, ref, watch } from 'vue'
 import type { PropType } from 'vue'
 
 import CommentItem from './CommentItem.vue'
@@ -61,6 +60,7 @@ const commentHotCallback = async() => {
   const comment = await getCommentHot({
     id: props.id,
     type: props.type,
+    limit: 10,
   })
   commentsHot.value = comment.comments
 }
@@ -76,6 +76,8 @@ const commentNewCallback = async() => {
   const comment = await getCommentNew({
     id: props.id,
     type: props.type,
+    pageNo: currentPage.value,
+    pageSize: 30,
     sortType: 3,
     cursor: cursor.value,
   })
@@ -85,13 +87,21 @@ const commentNewCallback = async() => {
 }
 
 /**
- * 参数变化重新请求
+ * 初始化请求
  */
-watchEffect(() => {
-  if (props.id) {
-    commentHotCallback()
-    commentNewCallback()
-  }
+const commentCallback = () => {
+  if (!props.id) return
+  currentPage.value = 1
+  commentHotCallback()
+  commentNewCallback()
+}
+
+watch(() => props.id, () => {
+  commentCallback()
+})
+
+onMounted(() => {
+  commentCallback()
 })
 </script>
 
@@ -103,8 +113,8 @@ watchEffect(() => {
     font-weight: 700;
   }
 
-  @include e(count) {
-    font-size: 14px;
+  @include e(block) {
+    margin-bottom: 30px;
   }
 
   @include e(pagination) {

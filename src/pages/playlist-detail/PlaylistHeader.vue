@@ -1,9 +1,9 @@
 <template>
   <div class="detail-header">
-    <div class="detail-header__cover">
+    <div v-show="playlist.id" class="detail-header__cover">
       <img :src="playlist.coverImgUrl">
     </div>
-    <div class="detail-header__content">
+    <div v-show="playlist.id" class="detail-header__content">
       <div>
         <div class="detail-header__title">
           {{ playlist.name }}
@@ -47,6 +47,7 @@ const playlist = toRef(props, 'playlist')
 <style lang="scss" scoped>
 @include b(detail-header) {
   display: flex;
+  min-height: 236px;
   padding-bottom: 36px;
 
   @include e(cover) {

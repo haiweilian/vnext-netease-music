@@ -1,3 +1,6 @@
+/**
+ * see https://github.com/haiweilian/blog/blob/master/PlugIn/2020-05-04.md
+ */
 import { ElLoading } from 'element-plus'
 import type { ILoadingInstance } from 'element-plus/packages/loading/src/loading.type'
 
@@ -8,7 +11,7 @@ function startLoading() {
   loading = ElLoading.service({
     lock: true,
     fullscreen: true,
-    text: '正在加载...',
+    text: '正在加载资源...',
     background: 'rgba(255, 255, 255, 0.3)',
   })
 }
@@ -18,8 +21,9 @@ function endLoading() {
 }
 
 function tryCloseLoading() {
-  if (needLoadingRequestCount === 0)
+  if (needLoadingRequestCount === 0) {
     endLoading()
+  }
 }
 
 export function showFullScreenLoading() {
@@ -35,6 +39,6 @@ export function tryHideFullScreenLoading() {
   if (needLoadingRequestCount === 0) {
     setTimeout(() => {
       tryCloseLoading()
-    })
+    }, 100)
   }
 }

@@ -1,11 +1,16 @@
 import { getRequest } from '../request'
 import { translateComment } from './translate'
-import { CommentType, CommentTrans } from '~/utils/constant'
+import { CommentType } from '~/utils/constant'
 import type { IMultiPageBeforeConfig } from '~/types'
 
 enum REQUEST_URL {
   CommentHot = '/comment/hot',
   CommentNew = '/comment/new',
+}
+
+export enum CommentTrans {
+  Hot = 'hot',
+  New = 'new'
 }
 
 export interface ICommentNewParams {

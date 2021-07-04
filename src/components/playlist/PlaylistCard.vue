@@ -1,12 +1,12 @@
 <template>
-  <div class="playlist-card">
+  <div class="playlist-card" @click="goPlaylist">
     <div class="playlist-card__inner">
-      <img v-lazy="playlist.picUrl" class="playlist-card__cover" />
+      <img v-lazy="thumbnail(playlist.picUrl, 190)" class="playlist-card__cover" />
       <div class="playlist-card__desc">
-        <span class="desc">{{ playlist.playCount }}</span>
+        <span class="desc">播放量：{{ formatCount(playlist.playCount) }}</span>
       </div>
       <div class="playlist-card__play">
-        <IconSvg name="round-play-arrow" />
+        <Icon name="round-play-arrow" />
       </div>
     </div>
     <p class="playlist-card__name">
@@ -17,9 +17,12 @@
 
 <script setup lang="ts">
 import { defineProps } from 'vue'
+import { useRouter } from 'vue-router'
 import type { PropType } from 'vue'
+
+import Icon from '~/components/base/Icon.vue'
+import { thumbnail, formatCount } from '~/utils'
 import type { IPlaylist } from '~/types'
-import IconSvg from '~/components/icon/IconSvg.vue'
 
 const { playlist } = defineProps({
   playlist: {
@@ -27,6 +30,11 @@ const { playlist } = defineProps({
     required: true,
   },
 })
+
+const router = useRouter()
+const goPlaylist = () => {
+  router.push(`/playlist/${playlist.id}`)
+}
 </script>
 
 <style lang="scss" scoped>

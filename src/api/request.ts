@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { showError } from './error'
 import { showFullScreenLoading, tryHideFullScreenLoading } from './loading'
 
 const http = axios.create({
@@ -22,6 +23,7 @@ http.interceptors.response.use(
     return response
   },
   (error) => {
+    showError(error)
     tryHideFullScreenLoading()
     return Promise.reject(error)
   },

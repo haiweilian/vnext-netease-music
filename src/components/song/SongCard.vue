@@ -1,10 +1,10 @@
 <template>
   <div class="song-card" @click="setCurrentPlaySong">
     <div class="song-card__order">
-      <span class="order">{{ song.order }}</span>
+      <span class="order">{{ padZero(song.order) }}</span>
     </div>
-    <div class="song-card__cover">
-      <img v-lazy="song.picUrl" class="" />
+    <div v-if="song.picUrl" class="song-card__cover">
+      <img v-lazy="thumbnail(song.picUrl, 60)" class="" />
     </div>
     <div class="song-card__text">
       {{ song.name }}
@@ -16,17 +16,19 @@
       {{ song.album }}
     </div>
     <div class="song-card__time">
-      {{ song.duration }}
+      {{ dayjs.duration(song.duration).format('mm:ss') }}
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import dayjs from 'dayjs'
 import { defineProps } from 'vue'
 import { useStore } from 'vuex'
 import type { PropType } from 'vue'
 
 import { SET_CURRENT_SONG } from '~/store/modules/player'
+import { thumbnail, padZero } from '~/utils'
 import type { ISong } from '~/types'
 
 const { song } = defineProps({

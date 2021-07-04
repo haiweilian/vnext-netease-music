@@ -1,6 +1,8 @@
 <template>
   <div class="menu">
+    <!-- 用户信息 -->
     <MenuUser />
+    <!-- 用户歌单 -->
     <MenuSong />
   </div>
 </template>

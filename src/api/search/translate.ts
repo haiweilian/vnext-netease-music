@@ -12,7 +12,7 @@ export const translateSearch = (res: AxiosResponse, type: SearchType) => {
     const songs: ISong[] = result.songs.map((song: any, index: number) => {
       return {
         id: song.id,
-        name: song.namem,
+        name: song.name,
         order: index + 1,
         picUrl: song.picUrl,
         artists: song.artists.map((ar: any) => ar.name).join('/'),

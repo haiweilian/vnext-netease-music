@@ -1,7 +1,7 @@
 <template>
-  <Tab
+  <Tabs
     v-model="currentTab"
-    :tab="localSongTabs"
+    :tabs="localSongTabs"
     @change="topSong"
   />
   <div class="content">
@@ -16,7 +16,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 
-import Tab from '~/components/tab/Tab.vue'
+import Tabs from '~/components/base/Tabs.vue'
 import SongCard from '~/components/song/SongCard.vue'
 
 import { getTopSong } from '~/api/playlist'

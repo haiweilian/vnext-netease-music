@@ -1,7 +1,7 @@
 <template>
   <div class="comment">
     <div class="comment__avatar">
-      <img v-lazy="comment.avatarUrl">
+      <img v-lazy="thumbnail(comment.avatarUrl, 40)">
     </div>
     <div class="comment__content is-border">
       <div class="comment__text">
@@ -14,9 +14,9 @@
         </div>
       </div>
       <div class="comment__info">
-        <span class="date">{{ comment.time }}</span>
+        <span class="date">{{ dayjs(comment.time).format('YYYY-MM-DD HH:mm') }}</span>
         <div class="actions">
-          <IconSvg name="thumb" />
+          <Icon name="thumb" />
           <span>{{ comment.likedCount }}</span>
         </div>
       </div>
@@ -25,10 +25,12 @@
 </template>
 
 <script setup lang="ts">
+import dayjs from 'dayjs'
 import { defineProps, toRef } from 'vue'
 import type { PropType } from 'vue'
 
-import IconSvg from '~/components/icon/IconSvg.vue'
+import Icon from '~/components/base/Icon.vue'
+import { thumbnail } from '~/utils'
 import type { IComment } from '~/types'
 
 const props = defineProps({

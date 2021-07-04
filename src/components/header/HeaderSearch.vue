@@ -6,8 +6,8 @@
     @focus="isSearch = true"
     @keyup.enter="goSearch(search, true)"
   />
-  <!-- 传入到最外层 -->
   <teleport to="#app">
+    <!-- 搜索推荐 -->
     <div v-show="isSearch" ref="outside" class="search">
       <p class="search__title">
         热门搜索

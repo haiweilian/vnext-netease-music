@@ -1,5 +1,5 @@
 <template>
-  <svg :style="getStyle" class="icon-svg" aria-hidden="true">
+  <svg :style="getStyle" class="icon" aria-hidden="true">
     <use :xlink:href="symbolId" />
   </svg>
 </template>
@@ -36,7 +36,7 @@ const getStyle = computed((): CSSProperties => {
 </script>
 
 <style lang="scss" scoped>
-  .icon-svg {
+  .icon {
     display: inline-block;
     overflow: hidden;
     vertical-align: -0.3em;

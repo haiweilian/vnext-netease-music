@@ -54,11 +54,24 @@
   }
 }
 
-/* pager
+/* pagination
 -------------------------- */
-.el-pager {
-  li.active {
+.el-pagination {
+  margin-top: 20px;
+  text-align: right;
+
+  .el-icon {
     color: #d33a31;
+  }
+
+  .el-pager {
+    li.active {
+      color: #d33a31;
+    }
+
+    li:hover {
+      color: #d33a31;
+    }
   }
 }
 

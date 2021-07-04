@@ -1,5 +1,4 @@
 import { getRequest } from '../request'
-import { translateLyric } from './translate'
 
 enum REQUEST_URL {
   Lyric = '/lyric',

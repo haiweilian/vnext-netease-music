@@ -7,7 +7,7 @@
       <ul v-for="menu of menus.children" :key="menu.link" class="">
         <RouterLink v-slot="{navigate, isExactActive}" :to="menu.link" custom>
           <li class="menu-song__item" :class="{'is-active': isExactActive}" @click="navigate">
-            <IconSvg :name="menu.icon" />
+            <Icon :name="menu.icon" />
             <span class="menu-song__value">
               {{ menu.name }}
             </span>
@@ -22,7 +22,7 @@
 import { computed, ref, watchEffect } from 'vue'
 import { useStore } from 'vuex'
 
-import IconSvg from '~/components/icon/IconSvg.vue'
+import Icon from '~/components/base/Icon.vue'
 import { getUserPlaylist } from '~/api/user'
 import { localMenus } from '~/utils/local'
 import type { IUser, IMenu } from '~/types'
@@ -31,14 +31,13 @@ const store = useStore()
 const user = computed<IUser>(() => store.state.user.user)
 const menusList = ref<IMenu[]>([])
 
+// 如果已登录收藏加默认菜单，反之只展示默认菜单。
 watchEffect(async() => {
   if (user.value.userId) {
-    // 如果已登录，收藏加默认菜单
     const reqMenus = await getUserPlaylist({ uid: user.value.userId })
     menusList.value = localMenus.concat(reqMenus)
   }
   else {
-    // 反之，只展示默认菜单
     menusList.value = localMenus
   }
 })

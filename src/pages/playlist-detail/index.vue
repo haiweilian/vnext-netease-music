@@ -1,19 +1,20 @@
 <template>
   <PlaylistHeader :playlist="playlist" />
-  <div class="result">
-    <ElTabs v-model="activeName">
-      <ElTabPane label="歌曲列表" name="song">
-        <SongCard
-          v-for="song of playlist.songs"
-          :key="song.id"
-          :song="song"
-        />
-      </ElTabPane>
-      <ElTabPane :label="`评论(${playlist.commentCount})`" name="comment">
-        <Comment :id="playlistId" :type="CommentType.playlist" />
-      </ElTabPane>
-    </ElTabs>
-  </div>
+  <ElTabs v-model="activeName">
+    <ElTabPane label="歌曲列表" name="song" lazy>
+      <SongCard
+        v-for="song of playlist.songs"
+        :key="song.id"
+        :song="song"
+      />
+    </ElTabPane>
+    <ElTabPane :label="`评论(${playlist.commentCount || 0})`" name="comment" lazy>
+      <Comment
+        :id="playlistId"
+        :type="CommentType.playlist"
+      />
+    </ElTabPane>
+  </ElTabs>
 </template>
 
 <script setup lang="ts">

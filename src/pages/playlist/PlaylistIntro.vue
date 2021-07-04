@@ -1,5 +1,5 @@
 <template>
-  <div class="intro-card">
+  <div v-show="playlist.id" class="intro-card">
     <div class="intro-card__wrapper">
       <div class="intro-card__cover">
         <img :src="playlist.picUrl">

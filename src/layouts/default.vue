@@ -1,7 +1,11 @@
 <template>
+  <!-- 头部导航 -->
   <Header />
+  <!-- 左侧菜单 -->
   <Menu />
-  <Player />
+  <!-- 播放器 -->
+  <!-- <Player /> -->
+  <!-- 内容区域 -->
   <main class="layout">
     <router-view />
   </main>
@@ -10,7 +14,7 @@
 <script setup lang="ts">
 import Header from '~/components/header/Header.vue'
 import Menu from '~/components/menu/Menu.vue'
-import Player from '~/components/player/Player.vue'
+// import Player from '~/components/player/Player.vue'
 </script>
 
 <style lang="scss" scoped>

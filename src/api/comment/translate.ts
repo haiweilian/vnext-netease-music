@@ -1,6 +1,6 @@
 import type { AxiosResponse } from 'axios'
+import { CommentTrans } from './index'
 import type { IComment } from '~/types'
-import { CommentTrans } from '~/utils/constant'
 
 /**
  * 转化评论数据，提取字段、处理回复格式
@@ -10,21 +10,20 @@ export const translateComment = (res: AxiosResponse, type: CommentTrans) => {
   let data = res.data
   let total: any = 0
   let cursor: any = ''
-  let hasMore: any = false
   let comments: any = []
 
-  // 获取不同的取值方式
+  // 热门评论取值
   if (type === CommentTrans.Hot) {
     total = data.total
     cursor = data.cursor
-    hasMore = data.hasMore
     comments = data.hotComments
   }
-  else if (type === CommentTrans.New) {
+
+  // 资源评论取值
+  if (type === CommentTrans.New) {
     data = data.data
     total = data.totalCount
     cursor = data.cursor
-    hasMore = data.hasMore
     comments = data.comments
   }
 
@@ -45,7 +44,6 @@ export const translateComment = (res: AxiosResponse, type: CommentTrans) => {
   return {
     total: total as number,
     cursor: cursor as string,
-    hasMore: hasMore as boolean,
     comments: transComments,
   }
 }

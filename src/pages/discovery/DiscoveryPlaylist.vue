@@ -32,4 +32,8 @@ onMounted(async() => {
   font-weight: normal;
   color: #333;
 }
+
+.content {
+  min-height: 500px;
+}
 </style>

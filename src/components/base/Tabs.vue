@@ -1,24 +1,24 @@
 <template>
-  <ul class="tab tab--right">
+  <ul class="tabs">
     <li
-      v-for="tab of props.tab"
+      v-for="tab of tabs"
       :key="tab.value"
-      :class="['tab__item', tab.value === currentValue ? 'active' : '']"
+      :class="['tabs__item', tab.value === currentValue ? 'is-active' : '']"
       @click="setCurrentValue(tab.value)"
     >
-      <span class="title">{{ tab.label }}</span>
+      {{ tab.label }}
     </li>
   </ul>
 </template>
 
 <script setup lang="ts">
-import { ref, defineProps, defineEmit, watchEffect } from 'vue'
+import { ref, toRef, defineProps, defineEmit, watch } from 'vue'
 import type { PropType } from 'vue'
 import type { ISingleTab } from '~/types'
 
-// 定义接收和发布
+// 定义接收和通知
 const props = defineProps({
-  tab: {
+  tabs: {
     type: Object as PropType<ISingleTab[]>,
     required: true,
   },
@@ -27,10 +27,11 @@ const props = defineProps({
     default: '',
   },
 })
+const tabs = toRef(props, 'tabs')
 const emits = defineEmit(['update:modelValue', 'change'])
 
 // 切换更新通知
-const currentValue = ref<string | number>('')
+const currentValue = ref<string | number>(props.modelValue)
 const setCurrentValue = (value: string | number) => {
   currentValue.value = value
   emits('update:modelValue', currentValue.value)
@@ -38,23 +39,16 @@ const setCurrentValue = (value: string | number) => {
 }
 
 // 监听赋值默认值
-watchEffect(() => {
-  currentValue.value = props.modelValue
+watch(() => props.modelValue, (modelValue) => {
+  currentValue.value = modelValue
 })
 </script>
 
 <style lang="scss" scoped>
-@include b(tab) {
+@include b(tabs) {
   display: flex;
+  justify-content: flex-end;
   list-style: none;
-
-  @include m(center) {
-    justify-content: center;
-  }
-
-  @include m(right) {
-    justify-content: flex-end;
-  }
 
   @include e(item) {
     padding: 12px 0;
@@ -64,12 +58,12 @@ watchEffect(() => {
     white-space: nowrap;
     cursor: pointer;
 
-    &:hover {
-      color: #000;
+    @include when(active) {
+      color: #d33a31;
     }
 
-    &.active {
-      color: #d33a31;
+    &:hover {
+      color: #000;
     }
   }
 }
