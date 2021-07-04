@@ -8,14 +8,13 @@
     />
 
     <!-- 歌词封面 -->
-    <PlayerLyric
+    <!-- <PlayerLyric
       :current-song="currentSong"
-    />
+    /> -->
 
     <!-- 播放进度 -->
     <PlayerProgress
       v-model:currentTime="currentTime"
-      :current-song="currentSong"
       :duration="duration"
     />
 
@@ -33,7 +32,6 @@
     <div class="player__center">
       <PlayerControl
         v-model:playing="playing"
-        :current-song="currentSong"
       />
     </div>
 
@@ -41,7 +39,6 @@
     <div class="player__right">
       <PlayerVolume
         v-model:volume="volume"
-        :current-song="currentSong"
       />
     </div>
   </div>
@@ -52,7 +49,7 @@ import { computed, ref } from 'vue'
 import { useStore } from 'vuex'
 import { useMediaControls } from '@vueuse/core'
 
-import PlayerLyric from '~/components/player/PlayerLyric.vue'
+// import PlayerLyric from '~/components/player/PlayerLyric.vue'
 import PlayerProgress from '~/components/player/PlayerProgress.vue'
 import PlayerContent from '~/components/player/PlayerContent.vue'
 import PlayerControl from '~/components/player/PlayerControl.vue'

@@ -1,11 +1,16 @@
 <template>
   <div class="player-volume">
-    <IconSvg name="volume-off" size="20" @click="changeVolume" />
+    <Icon
+      :name="volumeStatusName"
+      size="20"
+      @click="changeVolume"
+    />
     <ElSlider
-      v-model="slider"
+      v-model="volume"
       :min="0"
       :max="1"
       :step="0.01"
+      :show-tooltip="false"
       class="player-volume__slider"
       @input="changeSlider"
     />
@@ -13,43 +18,49 @@
 </template>
 
 <script setup lang="ts">
-import { ref, defineProps, defineEmit, watchEffect } from 'vue'
+import { ref, defineProps, defineEmit, watch, computed, onMounted } from 'vue'
 import { ElSlider } from 'element-plus'
-import type { PropType } from 'vue'
+import Icon from '~/components/base/Icon.vue'
 
-import IconSvg from '~/components/icon/IconSvg.vue'
-import type { ISong } from '~/types'
-
-defineProps({
-  currentSong: {
-    type: Object as PropType<ISong>,
-    required: true,
-  },
+const props = defineProps({
   volume: {
     type: Number,
     required: true,
   },
 })
-
 const emits = defineEmit(['update:volume'])
 
-const slider = ref(0)
+/**
+ * 改变音量更新值
+ */
+const volume = ref<number>(0.75)
 const changeSlider = () => {
-  emits('update:volume', slider.value)
+  emits('update:volume', volume.value)
 }
 
-// watch(() => props.volume, (newv, oldv) => {
-//   console.log('22222', newv, oldv)
-//   slider.value = props.currentTime
-// })
-
-// const volumeStatus = false
+/**
+ * 切换静音时保存现有音量
+ */
+const volumeCache = ref<number>(0)
+const volumeStatus = ref<boolean>(true)
+const volumeStatusName = computed(() => volumeStatus.value ? 'volume-up' : 'volume-off')
 const changeVolume = () => {
-  // if(slider)
+  volumeStatus.value = !volumeStatus.value
+  if (volumeStatus.value) {
+    volume.value = volumeCache.value
+  }
+  else {
+    volumeCache.value = volume.value
+    volume.value = 0
+  }
 }
 
-watchEffect(() => {
-  // slider.value = Math.round(props.currentTime / props.duration * 100)
+onMounted(() => {
+  changeSlider()
+})
+
+watch(() => props.volume, (newv) => {
+  volume.value = newv
 })
 </script>
 

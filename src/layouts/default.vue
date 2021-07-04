@@ -4,7 +4,7 @@
   <!-- 左侧菜单 -->
   <Menu />
   <!-- 播放器 -->
-  <!-- <Player /> -->
+  <Player />
   <!-- 内容区域 -->
   <main class="layout">
     <router-view />
@@ -14,7 +14,7 @@
 <script setup lang="ts">
 import Header from '~/components/header/Header.vue'
 import Menu from '~/components/menu/Menu.vue'
-// import Player from '~/components/player/Player.vue'
+import Player from '~/components/player/Player.vue'
 </script>
 
 <style lang="scss" scoped>

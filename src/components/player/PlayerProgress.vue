@@ -1,10 +1,10 @@
 <template>
   <div class="player-progress slider-hover-button">
     <ElSlider
-      ref="ssslider"
-      v-model="slider"
+      v-model="progress"
       :min="0"
       :max="duration"
+      :show-tooltip="false"
       class="hover-button"
       @input="changeSlider"
     />
@@ -12,16 +12,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, defineProps, defineEmit, watch, nextTick } from 'vue'
+import { ref, defineProps, defineEmit, watch } from 'vue'
 import { ElSlider } from 'element-plus'
-import type { PropType } from 'vue'
-import type { ISong } from '~/types'
 
 const props = defineProps({
-  currentSong: {
-    type: Object as PropType<ISong>,
-    required: true,
-  },
   currentTime: {
     type: Number,
     required: true,
@@ -34,8 +28,8 @@ const props = defineProps({
 
 const emits = defineEmit(['update:currentTime'])
 
-const slider = ref(0)
-const ssslider = ref<any>(null)
+const progress = ref(0)
+// const ssslider = ref<any>(null)
 const changeSlider = (s: any) => {
   // nextTick(() => {
   //   console.log('1111', s)
@@ -43,12 +37,12 @@ const changeSlider = (s: any) => {
 
   // console.log(ssslider.value.barStyle)
 
-  emits('update:currentTime', slider.value)
+  emits('update:currentTime', progress.value)
 }
 
 watch(() => props.currentTime, (newv, oldv) => {
   // console.log('22222', newv, oldv)
-  slider.value = props.currentTime
+  progress.value = props.currentTime
 })
 
 // setInterval(() => {

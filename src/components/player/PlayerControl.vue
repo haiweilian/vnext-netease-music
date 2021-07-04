@@ -1,18 +1,18 @@
 <template>
   <div class="player-control__prev">
-    <IconSvg name="player-prev" size="22" />
+    <Icon name="player-prev" size="22" />
   </div>
   <div class="player-control__play">
-    <IconSvg :name="status" size="50" @click="changeStatus" />
+    <Icon :name="status" size="50" @click="changeStatus" />
   </div>
   <div class="player-control__next">
-    <IconSvg name="player-next" size="22" />
+    <Icon name="player-next" size="22" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed, defineProps, defineEmit } from 'vue'
-import IconSvg from '~/components/icon/IconSvg.vue'
+import Icon from '~/components/base/Icon.vue'
 
 const props = defineProps({
   playing: {
@@ -34,12 +34,12 @@ const changeStatus = () => {
 @include b(player-control) {
   @include e(prev) {
     color: #d33a31;
-    cursor: pointer;
+    cursor: not-allowed;
   }
 
   @include e(next) {
     color: #d33a31;
-    cursor: pointer;
+    cursor: not-allowed;
   }
 
   @include e(play) {
