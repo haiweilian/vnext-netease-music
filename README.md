@@ -24,8 +24,8 @@
 
 ## Issue
 
-If you have a better suggestion, please [create an issue](https://github.com/haiweilian/taggd-manager/issues)
+If you have a better suggestion, please [create an issue](https://github.com/haiweilian/vnext-netease-music/issues)
 
 ## License
 
-The code is released under [the MIT license](https://github.com/haiweilian/taggd-manager/blob/master/LICENSE)
+The code is released under [the AGPL-3.0 license](https://github.com/haiweilian/vnext-netease-music/blob/master/LICENSE)
