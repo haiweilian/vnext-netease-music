@@ -8,9 +8,11 @@
     />
 
     <!-- 歌词封面 -->
-    <!-- <PlayerLyric
+    <PlayerLyric
+      :playing="playing"
+      :current-time="currentTime"
       :current-song="currentSong"
-    /> -->
+    />
 
     <!-- 播放进度 -->
     <PlayerProgress
@@ -49,17 +51,18 @@ import { computed, ref } from 'vue'
 import { useStore } from 'vuex'
 import { useMediaControls } from '@vueuse/core'
 
-// import PlayerLyric from '~/components/player/PlayerLyric.vue'
+import PlayerLyric from '~/components/player/PlayerLyric.vue'
 import PlayerProgress from '~/components/player/PlayerProgress.vue'
 import PlayerContent from '~/components/player/PlayerContent.vue'
 import PlayerControl from '~/components/player/PlayerControl.vue'
 import PlayerVolume from '~/components/player/PlayerVolume.vue'
 import type { ISong } from '~/types'
 
+const store = useStore()
+
 /**
  * 获取到播放地址
  */
-const store = useStore()
 const currentSong = computed<ISong>(() => store.state.player.currentSong)
 const currentSongSrc = computed(() => currentSong.value.id ? `https://music.163.com/song/media/outer/url?id=${currentSong.value.id}.mp3` : '')
 

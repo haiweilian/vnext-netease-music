@@ -10,6 +10,7 @@
     </ElTabPane>
     <ElTabPane :label="`评论(${playlist.commentCount || 0})`" name="comment" lazy>
       <Comment
+        v-if="activeName === 'comment'"
         :id="playlistId"
         :type="CommentType.playlist"
       />
@@ -35,15 +36,16 @@ const activeName = ref<string>('song')
 const playlist = ref<IPlaylistDetail>({} as IPlaylistDetail)
 const playlistId = computed<string>(() => (route.params.id as string))
 
-const playlistDetail = async() => {
+const playlistDetailCallback = async() => {
+  activeName.value = 'song'
   playlist.value = await getPlaylistDetail({ id: playlistId.value })
 }
 
 watch(() => route.params, () => {
-  playlistDetail()
+  playlistDetailCallback()
 })
 
 onMounted(() => {
-  playlistDetail()
+  playlistDetailCallback()
 })
 </script>

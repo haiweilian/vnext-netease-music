@@ -1,7 +1,6 @@
 import type { App } from 'vue'
-import { ElIcon } from 'element-plus'
+import 'element-plus/lib/theme-chalk/base.css'
 
 export const install = (app: App) => {
   app.config.globalProperties.$ELEMENT = { size: 'mini' }
-  app.use(ElIcon)
 }

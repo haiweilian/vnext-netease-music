@@ -2,7 +2,7 @@
   <Tabs
     v-model="currentTab"
     :tabs="localSongTabs"
-    @change="topSong"
+    @change="topSongCallback"
   />
   <div class="content">
     <SongCard
@@ -26,11 +26,11 @@ import type { ISong } from '~/types'
 const songs = ref<ISong[]>([])
 const currentTab = ref<string | number>(localSongTabs[0]?.value)
 
-const topSong = async() => {
+const topSongCallback = async() => {
   songs.value = await getTopSong({ type: currentTab.value })
 }
 
 onMounted(() => {
-  topSong()
+  topSongCallback()
 })
 </script>

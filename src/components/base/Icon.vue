@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, computed } from 'vue'
+import { computed } from 'vue'
 import type { CSSProperties } from 'vue'
 
 const props = defineProps({
@@ -23,6 +23,9 @@ const props = defineProps({
   },
 })
 
+/**
+ * see https://github.com/anncwb/vite-plugin-svg-icons
+ */
 const symbolId = computed(() => `#${props.prefix}-${props.name}`)
 const getStyle = computed((): CSSProperties => {
   const { size } = props
@@ -36,10 +39,10 @@ const getStyle = computed((): CSSProperties => {
 </script>
 
 <style lang="scss" scoped>
-  .icon {
-    display: inline-block;
-    overflow: hidden;
-    vertical-align: -0.3em;
-    fill: currentColor;
-  }
+@include b(icon) {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: -0.3em;
+  fill: currentColor;
+}
 </style>

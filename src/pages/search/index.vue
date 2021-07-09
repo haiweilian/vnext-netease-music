@@ -1,7 +1,7 @@
 <template>
   <div class="search-header">
     <span class="search-header__keywords">{{ keywords }}</span>
-    <span class="search-header__found">找到 {{ searchCount }} 个结果</span>
+    <span class="search-header__found">找到 {{ searchCount[activeName] }} 个结果</span>
   </div>
   <ElTabs v-model="activeName">
     <ElTabPane label="歌曲" name="song" lazy>
@@ -22,12 +22,13 @@ import SearchSong from './SearchSong.vue'
 import SearchPlaylist from './SearchPlaylist.vue'
 
 const route = useRoute()
+
 const keywords = computed<string>(() => route.params.keywords as string)
 const activeName = ref<string>('song')
 
-const searchCount = ref<number>(0)
-const searchCountCallback = (count: number) => {
-  searchCount.value = count
+const searchCount = ref<any>({})
+const searchCountCallback = (count: any) => {
+  searchCount.value = { ...searchCount.value, ...count }
 }
 </script>
 

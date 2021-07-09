@@ -10,7 +10,12 @@ export function isEmpty(value: any) {
  * @example http://p4.music.126.net/JzNK4a5PjjPIXAgVlqEc5Q==/109951164154280311.jpg?param=200y200
  */
 export function thumbnail(url: string, w: number, h: number = w) {
-  return `${url}?param=${w}y${h}`
+  if (url) {
+    return `${url}?param=${w}y${h}`
+  }
+  else {
+    return `https://p2.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg?param=${w}y${h}`
+  }
 }
 
 /**

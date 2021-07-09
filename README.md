@@ -1,27 +1,31 @@
-# Vue 3 + Typescript + Vite
+# vnext-netease-music
 
-This template should help get you started developing with Vue 3 and Typescript in Vite.
+没错又是仿网易云，那么多了网易云项目了还写？纯粹是为了学习罢了。
 
-## Recommended IDE Setup
+之前学习的 `Vue3`、`Vite2`、`TypeScript` 一直没有新项目可用，控制不住自己的小手了必须写写，也为了要看源码熟悉熟悉语法。
 
-[VSCode](https://code.visualstudio.com/) + [Vetur](https://marketplace.visualstudio.com/items?itemName=octref.vetur). Make sure to enable `vetur.experimental.templateInterpolationService` in settings!
+整体代码写的比较简洁，功能也比较简洁，想练习的可以继续扩展，很多功能都没做。
 
-### If Using `<script setup>`
+**预览地址**
 
-[`<script setup>`](https://github.com/vuejs/rfcs/pull/227) is a feature that is currently in RFC stage. To get proper IDE support for the syntax, use [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) instead of Vetur (and disable Vetur).
+<https://haiweilian-music.vercel.app>
 
-## Type Support For `.vue` Imports in TS
+**项目 UI 也不知道怎么设计(部分逻辑也是)，这里参考了 ssh 大佬的开源项目**
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can use the following:
+<https://github.com/sl1673495/vue-netease-music>
 
-### If Using Volar
+**接口使用的 Binaryify 大佬 的开源项目。**
 
-Run `Volar: Switch TS Plugin on/off` from VSCode command palette.
+<https://github.com/Binaryify/NeteaseCloudMusicApi>
 
-### If Using Vetur
+## Docs
 
-1. Install and add `@vuedx/typescript-plugin-vue` to the [plugins section](https://www.typescriptlang.org/tsconfig#plugins) in `tsconfig.json`
-2. Delete `src/shims-vue.d.ts` as it is no longer needed to provide module info to Typescript
-3. Open `src/main.ts` in VSCode
-4. Open the VSCode command palette
-5. Search and run "Select TypeScript version" -> "Use workspace version"
+在开发过程记录一些笔记，详情请看 [开发记录文档](./docs)。
+
+## Issue
+
+If you have a better suggestion, please [create an issue](https://github.com/haiweilian/taggd-manager/issues)
+
+## License
+
+The code is released under [the MIT license](https://github.com/haiweilian/taggd-manager/blob/master/LICENSE)

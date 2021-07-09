@@ -90,8 +90,10 @@ export const translatePlaylistDetail = async(res: AxiosResponse): Promise<IPlayl
   const { tags, creator, trackIds } = playlist
   const ids = trackIds.map((track: any) => track.id).join(',')
 
-  // 先请求歌单获取歌单下所有的 trackIds，再请求歌曲详情。
-  // https://neteasecloudmusicapi.vercel.app/#/?id=获取歌单详情
+  /**
+   * 先请求歌单获取歌单下所有的 trackIds，再请求歌曲详情。
+   * https://neteasecloudmusicapi.vercel.app/#/?id=获取歌单详情
+   */
   const { data } = await getSongDetail({ ids })
   const transSongs: ISong[] = data.songs.map((song: any, index: number) => {
     return {

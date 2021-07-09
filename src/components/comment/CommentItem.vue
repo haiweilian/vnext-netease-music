@@ -26,7 +26,7 @@
 
 <script setup lang="ts">
 import dayjs from 'dayjs'
-import { defineProps, toRef } from 'vue'
+import { toRef } from 'vue'
 import type { PropType } from 'vue'
 
 import Icon from '~/components/base/Icon.vue'

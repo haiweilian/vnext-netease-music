@@ -1,6 +1,6 @@
 <template>
   <div class="comment">
-    <div class="comment__block">
+    <div v-if="commentsHot.length" class="comment__block">
       <p class="comment__title">
         精彩评论
       </p>
@@ -10,7 +10,7 @@
         :comment="comment"
       />
     </div>
-    <div class="comment__block">
+    <div v-if="commentsNew.length" class="comment__block">
       <p class="comment__title">
         最新评论
       </p>
@@ -20,7 +20,7 @@
         :comment="comment"
       />
     </div>
-    <div class="comment__pagination">
+    <div v-if="commentsNew.length" class="comment__pagination">
       <ElPagination
         v-model:currentPage="currentPage"
         layout="prev, pager, next"
@@ -33,7 +33,7 @@
 
 <script setup lang="ts">
 import { ElPagination } from 'element-plus'
-import { defineProps, onMounted, ref, watch } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import type { PropType } from 'vue'
 
 import CommentItem from './CommentItem.vue'
@@ -47,7 +47,7 @@ const props = defineProps({
     required: true,
   },
   type: {
-    type: Object as PropType<CommentType>,
+    type: String as PropType<CommentType>,
     required: true,
   },
 })
@@ -87,7 +87,7 @@ const commentNewCallback = async() => {
 }
 
 /**
- * 初始化请求
+ * 初始化、评论资源变化重新请求
  */
 const commentCallback = () => {
   if (!props.id) return

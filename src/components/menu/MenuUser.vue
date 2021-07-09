@@ -46,17 +46,21 @@ import { isEmpty } from '~/utils'
 import type { IUser } from '~/types'
 
 const store = useStore()
+
+/**
+ * 用户登录，这里还不是真正的账号登录
+ */
 const storage = useStorage(GLOBAL_UID_KEY, '')
 const loginVisible = ref<boolean>(false)
 const uid = ref<string>('')
 const user = computed<IUser>(() => store.state.user.user)
-
-// 登录登录关闭登录框
 const login = async(uid: string) => {
   loginVisible.value = !(await store.dispatch(SET_LOGIN, uid))
 }
 
-// 退出成功，初始用户信息
+/**
+ * 退出登录
+ */
 const logout = async() => {
   ElMessageBox.confirm('确定退出登录?', '提示', {
     confirmButtonText: '确定',
@@ -67,7 +71,9 @@ const logout = async() => {
   })
 }
 
-// 如果已经登录过，默认执行登录获取用户信息
+/**
+ * 如果已经登录过，默认执行登录获取用户信息
+ */
 onMounted(() => {
   if (!isEmpty(storage.value)) {
     login(storage.value)

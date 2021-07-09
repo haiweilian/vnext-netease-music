@@ -24,10 +24,25 @@ export const translateUserPlaylist = (res: AxiosResponse): IMenu[] => {
   const menuCreateList: IMenuItem[] = []
   const menuCollectList: IMenuItem[] = []
 
-  // 区分分类、链接、图标
-  playlist.forEach((playlist: IMenuItem) => {
-    playlist.icon = 'playlist'
-    playlist.link = `/playlist/${playlist.id}`
+  const playlists: IMenuItem[] = playlist.map((playlist: any) => {
+    return {
+      name: playlist.name,
+      icon: 'playlist',
+      link: `/playlist/${playlist.id}`,
+      id: playlist.id,
+      userId: playlist.userId,
+    }
+  })
+
+  /**
+   * 因为不是真正的登录，没办法访问 "我喜欢的音乐"，所以删除掉
+   */
+  playlists.splice(0, 1)
+
+  /**
+   * 处理歌单分类
+   */
+  playlists.forEach((playlist: IMenuItem) => {
     if (res.config.params.uid === playlist.userId) {
       menuCreateList.push(playlist)
     }
@@ -36,7 +51,9 @@ export const translateUserPlaylist = (res: AxiosResponse): IMenu[] => {
     }
   })
 
-  // 处理分类数据结构
+  /**
+   * 处理分类数据结构
+   */
   if (menuCreateList.length) {
     menus.push({
       name: '创建的歌单',

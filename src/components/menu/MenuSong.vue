@@ -28,10 +28,13 @@ import { localMenus } from '~/utils/local'
 import type { IUser, IMenu } from '~/types'
 
 const store = useStore()
+
+/**
+ * 如果已登录收藏加默认菜单，反之只展示默认菜单。
+ */
 const user = computed<IUser>(() => store.state.user.user)
 const menusList = ref<IMenu[]>([])
 
-// 如果已登录收藏加默认菜单，反之只展示默认菜单。
 watchEffect(async() => {
   if (user.value.userId) {
     const reqMenus = await getUserPlaylist({ uid: user.value.userId })

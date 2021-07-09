@@ -12,22 +12,18 @@ export const translateComment = (res: AxiosResponse, type: CommentTrans) => {
   let cursor: any = ''
   let comments: any = []
 
-  // 热门评论取值
   if (type === CommentTrans.Hot) {
     total = data.total
     cursor = data.cursor
     comments = data.hotComments
   }
-
-  // 资源评论取值
-  if (type === CommentTrans.New) {
+  else if (type === CommentTrans.New) {
     data = data.data
     total = data.totalCount
     cursor = data.cursor
     comments = data.comments
   }
 
-  // 统一方法处理
   const transComments: IComment[] = comments.map((comment: any) => {
     return {
       id: comment.commentId,

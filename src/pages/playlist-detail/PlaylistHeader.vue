@@ -31,7 +31,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, toRef } from 'vue'
+import { toRef } from 'vue'
 import type { PropType } from 'vue'
 import type { IPlaylistDetail } from '~/types'
 

@@ -1,38 +1,52 @@
 <template>
   <teleport to="#app">
-    <div v-show="lyricPageStatus" class="player-lyric">
+    <!-- 歌词封面 -->
+    <div :class="{'is-hide': !lyricPageStatus }" class="player-lyric">
       <div class="player-lyric__content">
         <div class="player-lyric__song">
+          <!-- 播放状态 -->
           <div class="player-cover">
             <img :src="PlayBarSupport" class="player-cover__support">
-            <img :src="PlayBar" class="player-cover__bar is-playing">
+            <img :src="PlayBar" class="player-cover__bar" :class="{'is-playing': playing}">
             <div class="player-cover__cover">
-              <div class="player-cover__inner">
-                <img class="player-cover__image" src="https://p2.music.126.net/Yu--DIhsQSoei6XQTrSUNA==/109951163200168756.jpg?param=400y400">
+              <div class="player-cover__inner" :class="{'is-paused' : !playing}">
+                <img :src="thumbnail(currentSong.picUrl, 400)" class="player-cover__image">
               </div>
             </div>
           </div>
+          <!-- 歌词信息 -->
           <div class="lyric">
             <div class="lyric__name">
-              日不落
+              {{ currentSong.name }}
             </div>
             <div class="lyric__desc">
               <span class="label">歌手：</span>
               <div class="value">
-                蔡依林
+                {{ currentSong.artists }}
               </div>
             </div>
-            <div ref="listRef" class="scroller lyric__wrap">
-              <div v-for="(line, index) of lines" :ref="setItemRef" :key="line.time" class="lyric__item" :class="{'is-active': linexxx === index}">
+            <div ref="scroller" class="scroller lyric__wrap">
+              <div
+                v-for="(line, index) of lines"
+                :ref="setItemRef"
+                :key="line.timestamp"
+                class="lyric__item"
+                :class="{'is-active': lineActive === index}"
+              >
                 <p class="lyric__text">
-                  {{ line.txt }}
+                  {{ line.content }}
                 </p>
               </div>
             </div>
           </div>
         </div>
+        <!-- 歌曲评论 -->
         <div class="player-lyric__comment">
-          <Comment v-if="props.currentSong.id" :id="props.currentSong.id" :type="CommentType.song" />
+          <Comment
+            v-if="currentSong.id && lyricPageStatus"
+            :id="currentSong.id"
+            :type="CommentType.song"
+          />
         </div>
       </div>
     </div>
@@ -40,79 +54,89 @@
 </template>
 
 <script setup lang="ts">
-import { computed, defineProps, ref, onMounted, watch } from 'vue'
+import { computed, ref, toRef, watch } from 'vue'
 import { useStore } from 'vuex'
-import Lyric from 'lyric-parser'
+import { Lrc, Runner } from 'lrc-kit'
 import type { PropType } from 'vue'
+import type { Lyric } from 'lrc-kit'
 
 import PlayBar from '~/assets/image/play-bar.png'
 import PlayBarSupport from '~/assets/image/play-bar-support.png'
 import Comment from '~/components/comment/Comment.vue'
+
 import { getLyric } from '~/api/player'
+import { thumbnail } from '~/utils'
 import { CommentType } from '~/utils/constant'
 import type { ISong } from '~/types'
 
 const props = defineProps({
+  playing: {
+    type: Boolean,
+    required: true,
+  },
+  currentTime: {
+    type: Number,
+    required: true,
+  },
   currentSong: {
     type: Object as PropType<ISong>,
     required: true,
   },
 })
+const currentSong = toRef(props, 'currentSong')
+
+const store = useStore()
 
 /**
  * 是否展示歌词
  */
-const store = useStore()
 const lyricPageStatus = computed<boolean>(() => store.state.player.lyricPageStatus)
 
 /**
- * 歌词处理
+ * 歌词解析并根据播放时间实时获取歌词行数。
  */
-const linexxx = ref(-1)
-const lines = ref<any>([])
-onMounted(async() => {
-  const res = await getLyric({
-    id: 1855423946,
+const lines = ref<Lyric[]>([])
+const lineActive = ref<number>(0)
+const lrcInstance = ref<Runner>()
+const lyricCallback = async() => {
+  lrcInstance.value = undefined
+  const lyric = await getLyric({
+    id: currentSong.value.id,
   })
-  console.log('11111', res)
+  lrcInstance.value = new Runner(Lrc.parse(lyric.lrc.lyric))
+  lines.value = lrcInstance.value.getLyrics()
+}
 
-  lines.value = res.lines
-
-  function hanlder({ lineNum, txt }: any) {
-    console.log(lineNum, txt)
-    linexxx.value = lineNum
-  // this hanlder called when lineNum change
+watch(() => props.currentTime, (currentTime) => {
+  if (lrcInstance.value) {
+    lrcInstance.value.timeUpdate(currentTime)
+    lineActive.value = lrcInstance.value.curIndex()
   }
-  const lyric = new Lyric(res.lrc.lyric, hanlder)
-
-  lines.value = lyric.lines
-  console.log('222', lyric)
-  lyric.play()
 })
 
-const listRef = ref()
-const lyricLineRefs = ref<HTMLElement[]>([])
-
 /**
-     * 给歌词列表动态分配ref
-     */
+ * 获取歌词列表 ref，在检测到当前行变化的时候，定位歌词到内容中间
+ */
+const scroller = ref()
+const lyricLineRefs = ref<HTMLElement[]>([])
 const setItemRef = (el: HTMLElement): void => {
   lyricLineRefs.value.push(el)
 }
 
-watch(linexxx,
-  (lineNum: number) => {
-    const listDom = listRef.value as HTMLElement
-    if (!listDom || !lineNum) return
-    if (lineNum > 4) {
-      const curLineDom = lyricLineRefs.value[lineNum - 4]
-      listDom.scrollTop = curLineDom.offsetTop
-    }
-    else {
-      listDom.scrollTop = 0
-    }
-  },
-)
+watch(lineActive, (num: number) => {
+  const curDom = lyricLineRefs.value[num]
+  scroller.value.scrollTop = curDom.offsetTop - 130 + curDom.offsetHeight / 2
+})
+
+/**
+ * 歌曲变化时，重新请求歌词并初始化必要状态
+ */
+watch(currentSong, (currentSong) => {
+  if (currentSong.id) {
+    lyricCallback()
+    lyricLineRefs.value = []
+  }
+})
 </script>
 
 <style lang="scss" scoped>
@@ -247,19 +271,10 @@ watch(linexxx,
   }
 
   @include e(wrap) {
+    position: relative;
     width: 380px;
-    height: 220px;
-    overflow: hidden;
-    mask-image:
-      linear-gradient(
-        180deg,
-        hsla(0, 0%, 100%, 0) 0,
-        hsla(0, 0%, 100%, 0.6) 15%,
-        #fff 25%,
-        #fff 75%,
-        hsla(0, 0%, 100%, 0.6) 85%,
-        hsla(0, 0%, 100%, 0)
-      );
+    height: 260px;
+    overflow-y: auto;
   }
 
   @include e(item) {

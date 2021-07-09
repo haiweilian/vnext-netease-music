@@ -39,6 +39,6 @@ export function tryHideFullScreenLoading() {
   if (needLoadingRequestCount === 0) {
     setTimeout(() => {
       tryCloseLoading()
-    }, 100)
+    })
   }
 }

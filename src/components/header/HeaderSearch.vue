@@ -43,14 +43,19 @@
 import { ElInput } from 'element-plus'
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+import { useStore } from 'vuex'
 import { useStorage, onClickOutside } from '@vueuse/core'
 
 import { getSearchHot } from '~/api/search'
 import { isEmpty } from '~/utils'
 import { GLOBAL_SEARCH_HOT_KEY } from '~/utils/constant'
+import { SET_LYRIC_PAGE_STATUS } from '~/store/modules/player'
+
+const store = useStore()
+const router = useRouter()
 
 /**
- * "onClickOutside" 监听元素外的点击，再合适的实际关闭搜索框
+ * "onClickOutside" 监听元素外的点击事件
  */
 const search = ref<string>('')
 const isSearch = ref<boolean>(false)
@@ -60,10 +65,12 @@ onClickOutside(outside, () => {
 })
 
 /**
- * 跳转到搜索页，并存储历史记录
+ * 1、关闭搜索弹窗
+ * 2、跳转到搜索页
+ * 3、如果歌词打开关闭歌词
+ * 4、存储历史记录最新的记录排到最前
  */
 const hots = ref<string[]>([])
-const router = useRouter()
 const storage = useStorage<string[]>(GLOBAL_SEARCH_HOT_KEY, [])
 const goSearch = (keyword: string, history = false) => {
   if (isEmpty(keyword)) {
@@ -72,6 +79,7 @@ const goSearch = (keyword: string, history = false) => {
 
   isSearch.value = false
   router.push(`/search/${keyword}`)
+  store.commit(SET_LYRIC_PAGE_STATUS, false)
 
   if (history) {
     storage.value.unshift(keyword)

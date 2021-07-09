@@ -1,6 +1,9 @@
 <template>
   <div class="header">
-    <div class="header__left"></div>
+    <div class="header__left">
+      <HeaderMac />
+      <HeaderHistory />
+    </div>
     <div class="header__right">
       <HeaderSearch />
     </div>
@@ -8,6 +11,8 @@
 </template>
 
 <script setup lang="ts">
+import HeaderMac from './HeaderMac.vue'
+import HeaderHistory from './HeaderHistory.vue'
 import HeaderSearch from './HeaderSearch.vue'
 </script>
 
@@ -26,6 +31,8 @@ import HeaderSearch from './HeaderSearch.vue'
 
   @include e(left) {
     display: flex;
+    justify-content: space-between;
+    width: 250px;
   }
 
   @include e(right) {

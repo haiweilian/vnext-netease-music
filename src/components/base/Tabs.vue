@@ -6,17 +6,16 @@
       :class="['tabs__item', tab.value === currentValue ? 'is-active' : '']"
       @click="setCurrentValue(tab.value)"
     >
-      {{ tab.label }}
+      <span>{{ tab.label }}</span>
     </li>
   </ul>
 </template>
 
 <script setup lang="ts">
-import { ref, toRef, defineProps, defineEmit, watch } from 'vue'
+import { ref, toRef, watch } from 'vue'
 import type { PropType } from 'vue'
 import type { ISingleTab } from '~/types'
 
-// 定义接收和通知
 const props = defineProps({
   tabs: {
     type: Object as PropType<ISingleTab[]>,
@@ -28,9 +27,11 @@ const props = defineProps({
   },
 })
 const tabs = toRef(props, 'tabs')
-const emits = defineEmit(['update:modelValue', 'change'])
+const emits = defineEmits(['update:modelValue', 'change'])
 
-// 切换更新通知
+/**
+ * 切换通知更新值和事件
+ */
 const currentValue = ref<string | number>(props.modelValue)
 const setCurrentValue = (value: string | number) => {
   currentValue.value = value
@@ -38,7 +39,9 @@ const setCurrentValue = (value: string | number) => {
   emits('change', currentValue.value)
 }
 
-// 监听赋值默认值
+/**
+ * 监听绑定值赋值默认值
+ */
 watch(() => props.modelValue, (modelValue) => {
   currentValue.value = modelValue
 })

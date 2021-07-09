@@ -3,7 +3,7 @@
   <Tabs
     v-model="currentTab"
     :tabs="localPlaylistTabs"
-    @change="topPlaylist"
+    @change="topPlaylistCallback"
   />
   <div class="result">
     <PlaylistCard
@@ -16,7 +16,7 @@
     v-model:currentPage="currentPage"
     layout="prev, pager, next"
     :total="total"
-    @current-change="topPlaylist"
+    @current-change="topPlaylistCallback"
   />
 </template>
 
@@ -37,7 +37,7 @@ const playlists = ref<IPlaylist[]>([])
 const currentTab = ref<string | number>(localPlaylistTabs[0]?.value)
 const currentPage = ref<number>(1)
 
-const topPlaylist = async() => {
+const topPlaylistCallback = async() => {
   const topPlaylist = await getTopPlaylist({
     cat: currentTab.value,
     offset: currentPage.value - 1,
@@ -47,6 +47,6 @@ const topPlaylist = async() => {
 }
 
 onMounted(() => {
-  topPlaylist()
+  topPlaylistCallback()
 })
 </script>

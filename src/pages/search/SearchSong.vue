@@ -10,13 +10,13 @@
     v-model:currentPage="currentPage"
     layout="prev, pager, next"
     :total="total"
-    @current-change="search"
+    @current-change="searchCallback"
   />
 </template>
 
 <script setup lang="ts">
 import { ElPagination } from 'element-plus'
-import { onMounted, ref, defineEmit } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 
 import SongCard from '~/components/song/SongCard.vue'
@@ -25,12 +25,13 @@ import { SearchType } from '~/utils/constant'
 import type { ISong } from '~/types'
 
 const route = useRoute()
-const emits = defineEmit(['count'])
+const emits = defineEmits(['count'])
+
 const total = ref<number>(0)
 const currentPage = ref<number>(1)
 const songs = ref<ISong[]>([])
 
-const search = async() => {
+const searchCallback = async() => {
   const result = await getSearch({
     keywords: route.params.keywords as string,
     type: SearchType.single,
@@ -38,10 +39,17 @@ const search = async() => {
   })
   total.value = result?.total
   songs.value = result?.songs || []
-  emits('count', total.value)
+
+  emits('count', {
+    song: total.value,
+  })
 }
 
+watch(() => route.params, () => {
+  searchCallback()
+})
+
 onMounted(() => {
-  search()
+  searchCallback()
 })
 </script>

@@ -20,7 +20,7 @@
 
 <script setup lang="ts">
 import dayjs from 'dayjs'
-import { defineProps, computed } from 'vue'
+import { computed } from 'vue'
 import { useStore } from 'vuex'
 import type { PropType } from 'vue'
 
@@ -45,6 +45,10 @@ const props = defineProps({
 })
 
 const store = useStore()
+
+/**
+ * 打开或关闭歌词
+ */
 const iconStatus = computed<string>(() => store.state.player.lyricPageStatus ? 'shrink' : 'expand')
 const togglePlayer = () => {
   store.commit(SET_LYRIC_PAGE_STATUS)
@@ -114,6 +118,12 @@ const togglePlayer = () => {
       font-size: 13px;
       font-weight: 500;
       color: #333;
+    }
+
+    span:nth-of-type(2) {
+      display: inline-block;
+      margin-right: 5px;
+      margin-left: 5px;
     }
   }
 }
