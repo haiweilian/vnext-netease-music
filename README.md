@@ -10,11 +10,11 @@
 
 <https://haiweilian-music.vercel.app>
 
-**项目 UI 也不知道怎么设计(部分逻辑也是)，这里参考了 ssh 大佬的开源项目**
+**项目 UI 也不知道怎么设计(部分逻辑也是)，这里参考了 ssh 的开源项目**
 
 <https://github.com/sl1673495/vue-netease-music>
 
-**接口使用的 Binaryify 大佬 的开源项目。**
+**接口使用的 Binaryify 的开源项目。**
 
 <https://github.com/Binaryify/NeteaseCloudMusicApi>
 
