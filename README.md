@@ -10,7 +10,7 @@
 
 <https://haiweilian-music.vercel.app>
 
-**项目 UI 也不知道怎么设计(部分逻辑也是)，这里参考了 ssh 的开源项目**
+**项目 UI 参考了 ssh 的开源项目**
 
 <https://github.com/sl1673495/vue-netease-music>
 
@@ -28,4 +28,4 @@ If you have a better suggestion, please [create an issue](https://github.com/hai
 
 ## License
 
-The code is released under [the AGPL-3.0 license](https://github.com/haiweilian/vnext-netease-music/blob/master/LICENSE)
+The code is released under [the MIT license](https://github.com/haiweilian/vnext-netease-music/blob/master/LICENSE)

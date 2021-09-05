@@ -19,7 +19,7 @@
     "url": "git+https://github.com/haiweilian/vnext-netease-music.git"
   },
   "author": "haiweilian@foxmail.com",
-  "license": "AGPL-3.0",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/haiweilian/vnext-netease-music/issues"
   },
