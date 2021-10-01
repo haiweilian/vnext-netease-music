@@ -2,7 +2,7 @@ import path from 'path'
 import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
 import svgIcons from 'vite-plugin-svg-icons'
-import styleImport from 'vite-plugin-style-import'
+import ElementPlus from 'unplugin-element-plus/vite'
 
 export default defineConfig({
   resolve: {
@@ -18,19 +18,7 @@ export default defineConfig({
       iconDirs: [path.resolve(process.cwd(), 'src/assets/icons')],
       symbolId: 'icon-[name]',
     }),
-    styleImport({
-      libs: [{
-        libraryName: 'element-plus',
-        esModule: true,
-        ensureStyleFile: true,
-        resolveStyle: (name) => {
-          return `element-plus/lib/theme-chalk/${name}.css`
-        },
-        resolveComponent: (name) => {
-          return `element-plus/lib/${name}`
-        },
-      }],
-    }),
+    ElementPlus(),
   ],
   optimizeDeps: {
     include: [
