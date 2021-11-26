@@ -24,7 +24,7 @@ describe('Tabs', () => {
     // change last
     const last = localPlaylistTabs[localPlaylistTabs.length - 1].value
     wrapper.setProps({
-      modelValue: last
+      modelValue: last,
     })
     await nextTick()
     const lastElement = wrapper.findAll('li')[localPlaylistTabs.length - 1]
@@ -39,7 +39,7 @@ describe('Tabs', () => {
   test('should tabs emits', async() => {
     const wrapper = mount(Tabs, {
       props: {
-        tabs: localPlaylistTabs
+        tabs: localPlaylistTabs,
       },
     })
 
