@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tabs should tabs emits 1`] = `
+"<ul class=\\"tabs\\">
+  <li class=\\"tabs__item is-active\\"><span>全部</span></li>
+  <li class=\\"tabs__item\\"><span>欧美</span></li>
+  <li class=\\"tabs__item\\"><span>华语</span></li>
+  <li class=\\"tabs__item\\"><span>流行</span></li>
+  <li class=\\"tabs__item\\"><span>说唱</span></li>
+  <li class=\\"tabs__item\\"><span>摇滚</span></li>
+  <li class=\\"tabs__item\\"><span>民谣</span></li>
+  <li class=\\"tabs__item\\"><span>电子</span></li>
+  <li class=\\"tabs__item\\"><span>轻音乐</span></li>
+  <li class=\\"tabs__item\\"><span>ACG</span></li>
+  <li class=\\"tabs__item\\"><span>怀旧</span></li>
+  <li class=\\"tabs__item\\"><span>治愈</span></li>
+  <li class=\\"tabs__item\\"><span>旅行</span></li>
+</ul>"
+`;
+
+exports[`Tabs should tabs props 1`] = `
+"<ul class=\\"tabs\\">
+  <li class=\\"tabs__item is-active\\"><span>全部</span></li>
+  <li class=\\"tabs__item\\"><span>欧美</span></li>
+  <li class=\\"tabs__item\\"><span>华语</span></li>
+  <li class=\\"tabs__item\\"><span>流行</span></li>
+  <li class=\\"tabs__item\\"><span>说唱</span></li>
+  <li class=\\"tabs__item\\"><span>摇滚</span></li>
+  <li class=\\"tabs__item\\"><span>民谣</span></li>
+  <li class=\\"tabs__item\\"><span>电子</span></li>
+  <li class=\\"tabs__item\\"><span>轻音乐</span></li>
+  <li class=\\"tabs__item\\"><span>ACG</span></li>
+  <li class=\\"tabs__item\\"><span>怀旧</span></li>
+  <li class=\\"tabs__item\\"><span>治愈</span></li>
+  <li class=\\"tabs__item\\"><span>旅行</span></li>
+</ul>"
+`;
+
+exports[`Tabs should tabs props 2`] = `
+"<ul class=\\"tabs\\">
+  <li class=\\"tabs__item\\"><span>全部</span></li>
+  <li class=\\"tabs__item\\"><span>欧美</span></li>
+  <li class=\\"tabs__item\\"><span>华语</span></li>
+  <li class=\\"tabs__item\\"><span>流行</span></li>
+  <li class=\\"tabs__item\\"><span>说唱</span></li>
+  <li class=\\"tabs__item\\"><span>摇滚</span></li>
+  <li class=\\"tabs__item\\"><span>民谣</span></li>
+  <li class=\\"tabs__item\\"><span>电子</span></li>
+  <li class=\\"tabs__item\\"><span>轻音乐</span></li>
+  <li class=\\"tabs__item\\"><span>ACG</span></li>
+  <li class=\\"tabs__item\\"><span>怀旧</span></li>
+  <li class=\\"tabs__item\\"><span>治愈</span></li>
+  <li class=\\"tabs__item is-active\\"><span>旅行</span></li>
+</ul>"
+`;

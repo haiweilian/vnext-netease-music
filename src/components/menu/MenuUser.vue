@@ -67,7 +67,8 @@ const logout = async() => {
     cancelButtonText: '取消',
     type: 'warning',
   }).then(() => {
-    store.dispatch(SET_LOGOUT) && ElMessage.success('退出成功')
+    store.dispatch(SET_LOGOUT)
+    ElMessage.success('退出成功')
   })
 }
 

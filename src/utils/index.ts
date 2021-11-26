@@ -29,6 +29,5 @@ export function padZero(value: number) {
  * 数量转换单位
  */
 export function formatCount(value: number) {
-  value = Number(value) || 0
   return value > 100000 ? `${Math.round(value / 10000)} 万` : value
 }

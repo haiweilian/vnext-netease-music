@@ -14,7 +14,8 @@
     "strictNullChecks": true,
     "forceConsistentCasingInFileNames": true,
     "types": [
-      "vite/client"
+      "vite/client",
+      "jest"
     ],
     "paths": {
       "~/*": ["src/*"]

@@ -16,7 +16,7 @@ export interface IMultiPageBeforeConfig {
 }
 
 /**
- * 切换筛选
+ * 切换筛选
  */
 export interface ISingleTab {
   label: string
