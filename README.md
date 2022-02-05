@@ -14,9 +14,13 @@
 
 <https://github.com/sl1673495/vue-netease-music>
 
-**接口使用的 Binaryify 的开源项目。**
+**接口使用的 Binaryify 的开源项目**
 
 <https://github.com/Binaryify/NeteaseCloudMusicApi>
+
+**使用 React Hooks 的版本实现**
+
+<https://github.com/haiweilian/react-netease-music>
 
 ## Docs
 
