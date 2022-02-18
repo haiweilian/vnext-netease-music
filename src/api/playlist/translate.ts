@@ -85,7 +85,7 @@ export const translateTopSong = (res: AxiosResponse): ISong[] => {
 /**
  * 转化歌单详情，处理歌单详情不能获取详情，再次调用歌曲查询
  */
-export const translatePlaylistDetail = async(res: AxiosResponse): Promise<IPlaylistDetail> => {
+export const translatePlaylistDetail = async (res: AxiosResponse): Promise<IPlaylistDetail> => {
   const { playlist } = res.data
   const { tags, creator, trackIds } = playlist
   const ids = trackIds.map((track: any) => track.id).join(',')

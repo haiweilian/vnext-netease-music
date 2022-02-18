@@ -1,15 +1,7 @@
 <template>
-  <Tabs
-    v-model="currentTab"
-    :tabs="localSongTabs"
-    @change="topSongCallback"
-  />
+  <Tabs v-model="currentTab" :tabs="localSongTabs" @change="topSongCallback" />
   <div class="content">
-    <SongCard
-      v-for="song of songs"
-      :key="song.id"
-      :song="song"
-    />
+    <SongCard v-for="song of songs" :key="song.id" :song="song" />
   </div>
 </template>
 
@@ -26,7 +18,7 @@ import type { ISong } from '~/types'
 const songs = ref<ISong[]>([])
 const currentTab = ref<string | number>(localSongTabs[0]?.value)
 
-const topSongCallback = async() => {
+const topSongCallback = async () => {
   songs.value = await getTopSong({ type: currentTab.value })
 }
 

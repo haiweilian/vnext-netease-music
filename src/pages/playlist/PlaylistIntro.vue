@@ -2,12 +2,10 @@
   <div v-show="playlist.id" class="intro-card">
     <div class="intro-card__wrapper">
       <div class="intro-card__cover">
-        <img :src="playlist.picUrl">
+        <img :src="playlist.picUrl" />
       </div>
       <div class="intro-card__content">
-        <div class="intro-card__tag">
-          精品歌单
-        </div>
+        <div class="intro-card__tag">精品歌单</div>
         <p class="intro-card__name">
           {{ playlist.name }}
         </p>
@@ -29,7 +27,7 @@ import type { IPlaylist } from '~/types'
 
 const playlist = ref<IPlaylist>({} as IPlaylist)
 
-onMounted(async() => {
+onMounted(async () => {
   const { playlists } = await getTopPlaylistHighquality({ limit: 1 })
   if (playlists.length) {
     playlist.value = playlists[0]
@@ -53,7 +51,7 @@ onMounted(async() => {
 
   @include e(bgmask) {
     z-index: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgb(0 0 0 / 50%);
 
     @include abs-stretch;
   }
@@ -103,7 +101,7 @@ onMounted(async() => {
   @include e(desc) {
     font-size: 12px;
     line-height: 14px;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgb(255 255 255 / 50%);
 
     @include text-ellipsis-multi(5);
   }

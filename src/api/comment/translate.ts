@@ -16,8 +16,7 @@ export const translateComment = (res: AxiosResponse, type: CommentTrans) => {
     total = data.total
     cursor = data.cursor
     comments = data.hotComments
-  }
-  else if (type === CommentTrans.New) {
+  } else if (type === CommentTrans.New) {
     data = data.data
     total = data.totalCount
     cursor = data.cursor

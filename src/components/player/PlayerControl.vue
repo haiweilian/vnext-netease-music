@@ -30,7 +30,7 @@ const emits = defineEmits(['update:playing'])
 /**
  * 设置播放状态
  */
-const status = computed(() => props.playing ? 'player-pause' : 'player-play')
+const status = computed(() => (props.playing ? 'player-pause' : 'player-play'))
 const changeStatus = () => {
   emits('update:playing', !props.playing)
 }

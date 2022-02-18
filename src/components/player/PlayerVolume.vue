@@ -1,10 +1,6 @@
 <template>
   <div class="player-volume">
-    <Icon
-      :name="volumeStatusName"
-      size="20"
-      @click="changeVolumeStatus"
-    />
+    <Icon :name="volumeStatusName" size="20" @click="changeVolumeStatus" />
     <ElSlider
       v-model="volume"
       :min="0"
@@ -43,13 +39,12 @@ const changeVolume = () => {
  */
 const volumeCache = ref<number>(0)
 const volumeStatus = ref<boolean>(true)
-const volumeStatusName = computed(() => volumeStatus.value ? 'volume-up' : 'volume-off')
+const volumeStatusName = computed(() => (volumeStatus.value ? 'volume-up' : 'volume-off'))
 const changeVolumeStatus = () => {
   volumeStatus.value = !volumeStatus.value
   if (volumeStatus.value) {
     volume.value = volumeCache.value
-  }
-  else {
+  } else {
     volumeCache.value = volume.value
     volume.value = 0
   }
@@ -59,9 +54,12 @@ onMounted(() => {
   changeVolume()
 })
 
-watch(() => props.volume, (newv) => {
-  volume.value = newv
-})
+watch(
+  () => props.volume,
+  (newv) => {
+    volume.value = newv
+  }
+)
 </script>
 
 <style lang="scss" scoped>

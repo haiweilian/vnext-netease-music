@@ -24,8 +24,7 @@ export const translateSearch = (res: AxiosResponse, type: SearchType) => {
       songs,
       total: result.songCount,
     }
-  }
-  else if (type === SearchType.playlist) {
+  } else if (type === SearchType.playlist) {
     const playlists: IPlaylist[] = result.playlists.map((playlist: any, index: number) => {
       return {
         id: playlist.id,

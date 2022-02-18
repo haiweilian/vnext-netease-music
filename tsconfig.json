@@ -13,10 +13,7 @@
     "noUnusedLocals": true,
     "strictNullChecks": true,
     "forceConsistentCasingInFileNames": true,
-    "types": [
-      "vite/client",
-      "jest"
-    ],
+    "types": ["vite/client", "jest"],
     "paths": {
       "~/*": ["src/*"]
     }

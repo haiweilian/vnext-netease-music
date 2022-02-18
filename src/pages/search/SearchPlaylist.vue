@@ -1,10 +1,6 @@
 <template>
   <div class="result">
-    <PlaylistCard
-      v-for="playlist of playlists"
-      :key="playlist.id"
-      :playlist="playlist"
-    />
+    <PlaylistCard v-for="playlist of playlists" :key="playlist.id" :playlist="playlist" />
   </div>
   <ElPagination
     v-model:currentPage="currentPage"
@@ -31,7 +27,7 @@ const total = ref<number>(0)
 const currentPage = ref<number>(1)
 const playlists = ref<IPlaylist[]>([])
 
-const searchCallback = async() => {
+const searchCallback = async () => {
   const result = await getSearch({
     keywords: route.params.keywords as string,
     type: SearchType.playlist,
@@ -45,9 +41,12 @@ const searchCallback = async() => {
   })
 }
 
-watch(() => route.params, () => {
-  searchCallback()
-})
+watch(
+  () => route.params,
+  () => {
+    searchCallback()
+  }
+)
 
 onMounted(() => {
   searchCallback()

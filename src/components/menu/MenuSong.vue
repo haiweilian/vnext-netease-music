@@ -5,8 +5,8 @@
         {{ menus.name }}
       </p>
       <ul v-for="menu of menus.children" :key="menu.link" class="">
-        <RouterLink v-slot="{navigate, isExactActive}" :to="menu.link" custom>
-          <li class="menu-song__item" :class="{'is-active': isExactActive}" @click="navigate">
+        <RouterLink v-slot="{ navigate, isExactActive }" :to="menu.link" custom>
+          <li class="menu-song__item" :class="{ 'is-active': isExactActive }" @click="navigate">
             <Icon :name="menu.icon" />
             <span class="menu-song__value">
               {{ menu.name }}
@@ -35,12 +35,11 @@ const store = useStore()
 const user = computed<IUser>(() => store.state.user.user)
 const menusList = ref<IMenu[]>([])
 
-watchEffect(async() => {
+watchEffect(async () => {
   if (user.value.userId) {
     const reqMenus = await getUserPlaylist({ uid: user.value.userId })
     menusList.value = localMenus.concat(reqMenus)
-  }
-  else {
+  } else {
     menusList.value = localMenus
   }
 })

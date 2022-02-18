@@ -12,7 +12,9 @@ describe('test utils', () => {
   test('thumbnail', () => {
     expect(thumbnail('https://p2.music.126.net/1.png', 100)).toBe('https://p2.music.126.net/1.png?param=100y100')
     expect(thumbnail('https://p2.music.126.net/1.png', 100, 100)).toBe('https://p2.music.126.net/1.png?param=100y100')
-    expect(thumbnail('', 100, 100)).toBe('https://p2.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg?param=100y100')
+    expect(thumbnail('', 100, 100)).toBe(
+      'https://p2.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg?param=100y100'
+    )
   })
 
   test('padZero', () => {

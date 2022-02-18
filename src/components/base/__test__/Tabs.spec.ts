@@ -4,7 +4,7 @@ import Tabs from '../Tabs.vue'
 import { localPlaylistTabs } from '~/utils/local'
 
 describe('Tabs', () => {
-  test('should tabs props', async() => {
+  test('should tabs props', async () => {
     // first
     const first = localPlaylistTabs[0].value
     const wrapper = mount(Tabs, {
@@ -36,7 +36,7 @@ describe('Tabs', () => {
     expect(wrapper.html()).toMatchSnapshot()
   })
 
-  test('should tabs emits', async() => {
+  test('should tabs emits', async () => {
     const wrapper = mount(Tabs, {
       props: {
         tabs: localPlaylistTabs,

@@ -42,9 +42,12 @@ const setCurrentValue = (value: string | number) => {
 /**
  * 监听绑定值赋值默认值
  */
-watch(() => props.modelValue, (modelValue) => {
-  currentValue.value = modelValue
-})
+watch(
+  () => props.modelValue,
+  (modelValue) => {
+    currentValue.value = modelValue
+  }
+)
 </script>
 
 <style lang="scss" scoped>

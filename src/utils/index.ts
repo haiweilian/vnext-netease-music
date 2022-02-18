@@ -12,8 +12,7 @@ export function isEmpty(value: any) {
 export function thumbnail(url: string, w: number, h: number = w) {
   if (url) {
     return `${url}?param=${w}y${h}`
-  }
-  else {
+  } else {
     return `https://p2.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg?param=${w}y${h}`
   }
 }

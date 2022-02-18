@@ -14,7 +14,7 @@ http.interceptors.request.use(
   },
   (error) => {
     return Promise.reject(error)
-  },
+  }
 )
 
 http.interceptors.response.use(
@@ -26,7 +26,7 @@ http.interceptors.response.use(
     showError(error)
     tryHideFullScreenLoading()
     return Promise.reject(error)
-  },
+  }
 )
 
 export const getRequest = (url: string, params = {}) => {

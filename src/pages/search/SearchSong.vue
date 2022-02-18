@@ -1,10 +1,6 @@
 <template>
   <div class="result">
-    <SongCard
-      v-for="song of songs"
-      :key="song.id"
-      :song="song"
-    />
+    <SongCard v-for="song of songs" :key="song.id" :song="song" />
   </div>
   <ElPagination
     v-model:currentPage="currentPage"
@@ -31,7 +27,7 @@ const total = ref<number>(0)
 const currentPage = ref<number>(1)
 const songs = ref<ISong[]>([])
 
-const searchCallback = async() => {
+const searchCallback = async () => {
   const result = await getSearch({
     keywords: route.params.keywords as string,
     type: SearchType.single,
@@ -45,9 +41,12 @@ const searchCallback = async() => {
   })
 }
 
-watch(() => route.params, () => {
-  searchCallback()
-})
+watch(
+  () => route.params,
+  () => {
+    searchCallback()
+  }
+)
 
 onMounted(() => {
   searchCallback()

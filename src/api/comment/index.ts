@@ -10,7 +10,7 @@ enum REQUEST_URL {
 
 export enum CommentTrans {
   Hot = 'hot',
-  New = 'new'
+  New = 'new',
 }
 
 export interface ICommentNewParams {
@@ -31,12 +31,12 @@ export interface ICommentHotParams extends IMultiPageBeforeConfig {
  * @description: 查询对应资源的评论
  */
 export const getCommentNew = (params: ICommentNewParams) => {
-  return getRequest(REQUEST_URL.CommentNew, params).then(res => translateComment(res, CommentTrans.New))
+  return getRequest(REQUEST_URL.CommentNew, params).then((res) => translateComment(res, CommentTrans.New))
 }
 
 /**
  * @description: 查询对应资源热门评论
  */
 export const getCommentHot = (params: ICommentHotParams) => {
-  return getRequest(REQUEST_URL.CommentHot, params).then(res => translateComment(res, CommentTrans.Hot))
+  return getRequest(REQUEST_URL.CommentHot, params).then((res) => translateComment(res, CommentTrans.Hot))
 }

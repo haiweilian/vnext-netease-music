@@ -1,13 +1,7 @@
 <template>
-  <h6 class="title">
-    推荐歌单
-  </h6>
+  <h6 class="title">推荐歌单</h6>
   <div class="content">
-    <PlaylistCard
-      v-for="playlist of playlists"
-      :key="playlist.id"
-      :playlist="playlist"
-    />
+    <PlaylistCard v-for="playlist of playlists" :key="playlist.id" :playlist="playlist" />
   </div>
 </template>
 
@@ -20,7 +14,7 @@ import type { IPlaylist } from '~/types'
 
 const playlists = ref<IPlaylist[]>([])
 
-onMounted(async() => {
+onMounted(async () => {
   playlists.value = await getPersonalizedPlaylist({ limit: 10 })
 })
 </script>

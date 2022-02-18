@@ -45,8 +45,7 @@ export const translateUserPlaylist = (res: AxiosResponse): IMenu[] => {
   playlists.forEach((playlist: IMenuItem) => {
     if (res.config.params.uid === playlist.userId) {
       menuCreateList.push(playlist)
-    }
-    else {
+    } else {
       menuCollectList.push(playlist)
     }
   })

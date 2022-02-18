@@ -35,9 +35,12 @@ const changeProgress = () => {
   emits('update:currentTime', progress.value)
 }
 
-watch(() => props.currentTime, (currentTime) => {
-  progress.value = currentTime
-})
+watch(
+  () => props.currentTime,
+  (currentTime) => {
+    progress.value = currentTime
+  }
+)
 </script>
 
 <style lang="scss" scoped>

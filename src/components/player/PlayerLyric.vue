@@ -1,16 +1,16 @@
 <template>
   <teleport to="#app">
     <!-- 歌词封面 -->
-    <div :class="{'is-hide': !lyricPageStatus }" class="player-lyric">
+    <div :class="{ 'is-hide': !lyricPageStatus }" class="player-lyric">
       <div class="player-lyric__content">
         <div class="player-lyric__song">
           <!-- 播放状态 -->
           <div class="player-cover">
-            <img :src="PlayBarSupport" class="player-cover__support">
-            <img :src="PlayBar" class="player-cover__bar" :class="{'is-playing': playing}">
+            <img :src="PlayBarSupport" class="player-cover__support" />
+            <img :src="PlayBar" class="player-cover__bar" :class="{ 'is-playing': playing }" />
             <div class="player-cover__cover">
-              <div class="player-cover__inner" :class="{'is-paused' : !playing}">
-                <img :src="thumbnail(currentSong.picUrl, 400)" class="player-cover__image">
+              <div class="player-cover__inner" :class="{ 'is-paused': !playing }">
+                <img :src="thumbnail(currentSong.picUrl, 400)" class="player-cover__image" />
               </div>
             </div>
           </div>
@@ -31,7 +31,7 @@
                 :ref="setItemRef"
                 :key="line.timestamp"
                 class="lyric__item"
-                :class="{'is-active': lineActive === index}"
+                :class="{ 'is-active': lineActive === index }"
               >
                 <p class="lyric__text">
                   {{ line.content }}
@@ -42,11 +42,7 @@
         </div>
         <!-- 歌曲评论 -->
         <div class="player-lyric__comment">
-          <Comment
-            v-if="currentSong.id && lyricPageStatus"
-            :id="currentSong.id"
-            :type="CommentType.song"
-          />
+          <Comment v-if="currentSong.id && lyricPageStatus" :id="currentSong.id" :type="CommentType.song" />
         </div>
       </div>
     </div>
@@ -98,7 +94,7 @@ const lyricPageStatus = computed<boolean>(() => store.state.player.lyricPageStat
 const lines = ref<Lyric[]>([])
 const lineActive = ref<number>(0)
 const lrcInstance = ref<Runner>()
-const lyricCallback = async() => {
+const lyricCallback = async () => {
   lrcInstance.value = undefined
   const lyric = await getLyric({
     id: currentSong.value.id,
@@ -107,12 +103,15 @@ const lyricCallback = async() => {
   lines.value = lrcInstance.value.getLyrics()
 }
 
-watch(() => props.currentTime, (currentTime) => {
-  if (lrcInstance.value) {
-    lrcInstance.value.timeUpdate(currentTime)
-    lineActive.value = lrcInstance.value.curIndex()
+watch(
+  () => props.currentTime,
+  (currentTime) => {
+    if (lrcInstance.value) {
+      lrcInstance.value.timeUpdate(currentTime)
+      lineActive.value = lrcInstance.value.curIndex()
+    }
   }
-})
+)
 
 /**
  * 获取歌词列表 ref，在检测到当前行变化的时候，定位歌词到内容中间
@@ -140,7 +139,7 @@ watch(currentSong, (currentSong) => {
 </script>
 
 <style lang="scss" scoped>
-@keyframes playerRotate {
+@keyframes player-rotate {
   0% {
     transform: rotate(0);
   }
@@ -230,7 +229,7 @@ watch(currentSong, (currentSong) => {
 
     background: #000;
     background: linear-gradient(-45deg, #333540, #070708, #333540);
-    animation: playerRotate 20s linear infinite;
+    animation: player-rotate 20s linear infinite;
 
     @include when(paused) {
       animation-play-state: paused;

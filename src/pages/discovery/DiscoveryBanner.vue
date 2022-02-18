@@ -1,7 +1,7 @@
 <template>
   <ElCarousel type="card" height="200px">
     <ElCarouselItem v-for="item of banners" :key="item.imageUrl">
-      <img class="banner-cover" :src="item.imageUrl" :alt="item.typeTitle">
+      <img class="banner-cover" :src="item.imageUrl" :alt="item.typeTitle" />
     </ElCarouselItem>
   </ElCarousel>
 </template>
@@ -15,7 +15,7 @@ import type { IBanner } from '~/types/index'
 
 const banners = ref<IBanner[]>([])
 
-onMounted(async() => {
+onMounted(async () => {
   banners.value = await getBanner()
 })
 </script>

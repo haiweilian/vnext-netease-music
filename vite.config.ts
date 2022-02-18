@@ -21,15 +21,8 @@ export default defineConfig({
     ElementPlus(),
   ],
   optimizeDeps: {
-    include: [
-      'vue',
-      'vuex',
-      'vue-router',
-      '@vueuse/core',
-    ],
-    exclude: [
-      'vue-demi',
-    ],
+    include: ['vue', 'vuex', 'vue-router', '@vueuse/core'],
+    exclude: ['vue-demi'],
   },
   css: {
     preprocessorOptions: {

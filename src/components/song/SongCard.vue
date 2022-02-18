@@ -6,7 +6,7 @@
     <div v-if="song.picUrl" class="song-card__cover">
       <img v-lazy="thumbnail(song.picUrl, 60)" class="" />
     </div>
-    <div class="song-card__text" :class="{'is-active' : currentSong.id === song.id}">
+    <div class="song-card__text" :class="{ 'is-active': currentSong.id === song.id }">
       {{ song.name }}
     </div>
     <div class="song-card__text">
@@ -23,7 +23,7 @@
 
 <script setup lang="ts">
 import dayjs from 'dayjs'
-import { computed } from 'vue'
+import { computed, toRef } from 'vue'
 import { useStore } from 'vuex'
 import type { PropType } from 'vue'
 
@@ -31,7 +31,7 @@ import { SET_CURRENT_SONG } from '~/store/modules/player'
 import { thumbnail, padZero } from '~/utils'
 import type { ISong } from '~/types'
 
-const { song } = defineProps({
+const props = defineProps({
   song: {
     type: Object as PropType<ISong>,
     required: true,
@@ -39,12 +39,13 @@ const { song } = defineProps({
 })
 
 const store = useStore()
+const song = toRef(props, 'song')
 
 /**
  * 设置播放的音乐
  */
 const setCurrentPlaySong = () => {
-  store.commit(SET_CURRENT_SONG, song)
+  store.commit(SET_CURRENT_SONG, song.value)
 }
 
 /**

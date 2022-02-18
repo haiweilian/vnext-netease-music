@@ -1,7 +1,7 @@
 <template>
   <div class="detail-header">
     <div v-show="playlist.id" class="detail-header__cover">
-      <img :src="playlist.coverImgUrl">
+      <img :src="playlist.coverImgUrl" />
     </div>
     <div v-show="playlist.id" class="detail-header__content">
       <div>
@@ -9,22 +9,16 @@
           {{ playlist.name }}
         </div>
         <div class="detail-header__creator">
-          <img class="avatar" :src="playlist.avatarUrl">
+          <img class="avatar" :src="playlist.avatarUrl" />
           <p class="creator">
             {{ playlist.name }}
           </p>
-          <p class="time">
-            {{ playlist.createTime }} 创建
-          </p>
+          <p class="time">{{ playlist.createTime }} 创建</p>
         </div>
       </div>
       <div class="detail-header__desc">
-        <p class="desc">
-          标签：{{ playlist.tags }}
-        </p>
-        <p class="desc">
-          简介：{{ playlist.description }}
-        </p>
+        <p class="desc">标签：{{ playlist.tags }}</p>
+        <p class="desc">简介：{{ playlist.description }}</p>
       </div>
     </div>
   </div>

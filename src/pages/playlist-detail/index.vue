@@ -2,18 +2,10 @@
   <PlaylistHeader :playlist="playlist" />
   <ElTabs v-model="activeName">
     <ElTabPane label="歌曲列表" name="song" lazy>
-      <SongCard
-        v-for="song of playlist.songs"
-        :key="song.id"
-        :song="song"
-      />
+      <SongCard v-for="song of playlist.songs" :key="song.id" :song="song" />
     </ElTabPane>
     <ElTabPane :label="`评论(${playlist.commentCount || 0})`" name="comment" lazy>
-      <Comment
-        v-if="activeName === 'comment'"
-        :id="playlistId"
-        :type="CommentType.playlist"
-      />
+      <Comment v-if="activeName === 'comment'" :id="playlistId" :type="CommentType.playlist" />
     </ElTabPane>
   </ElTabs>
 </template>
@@ -34,16 +26,19 @@ import type { IPlaylistDetail } from '~/types'
 const route = useRoute()
 const activeName = ref<string>('song')
 const playlist = ref<IPlaylistDetail>({} as IPlaylistDetail)
-const playlistId = computed<string>(() => (route.params.id as string))
+const playlistId = computed<string>(() => route.params.id as string)
 
-const playlistDetailCallback = async() => {
+const playlistDetailCallback = async () => {
   activeName.value = 'song'
   playlist.value = await getPlaylistDetail({ id: playlistId.value })
 }
 
-watch(() => route.params, () => {
-  playlistDetailCallback()
-})
+watch(
+  () => route.params,
+  () => {
+    playlistDetailCallback()
+  }
+)
 
 onMounted(() => {
   playlistDetailCallback()

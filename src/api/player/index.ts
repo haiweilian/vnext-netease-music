@@ -7,6 +7,6 @@ enum REQUEST_URL {
 /**
  * @description: 获取歌词
  */
-export const getLyric = (params: {id: number}) => {
-  return getRequest(REQUEST_URL.Lyric, params).then(r => r.data)
+export const getLyric = (params: { id: number }) => {
+  return getRequest(REQUEST_URL.Lyric, params).then((r) => r.data)
 }

@@ -28,14 +28,12 @@ const actions: ActionTree<IUserState, IUserState> = {
       if (user) {
         commit(SET_USER, user)
         storage.value = user.userId
-      }
-      else {
+      } else {
         return error()
       }
 
       return true
-    }
-    catch (e) {
+    } catch (e) {
       return error()
     }
   },

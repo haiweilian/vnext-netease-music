@@ -1,24 +1,12 @@
 <template>
   <div class="comment">
     <div v-if="commentsHot.length" class="comment__block">
-      <p class="comment__title">
-        精彩评论
-      </p>
-      <CommentItem
-        v-for="comment of commentsHot"
-        :key="comment.id"
-        :comment="comment"
-      />
+      <p class="comment__title">精彩评论</p>
+      <CommentItem v-for="comment of commentsHot" :key="comment.id" :comment="comment" />
     </div>
     <div v-if="commentsNew.length" class="comment__block">
-      <p class="comment__title">
-        最新评论
-      </p>
-      <CommentItem
-        v-for="comment of commentsNew"
-        :key="comment.id"
-        :comment="comment"
-      />
+      <p class="comment__title">最新评论</p>
+      <CommentItem v-for="comment of commentsNew" :key="comment.id" :comment="comment" />
     </div>
     <div v-if="commentsNew.length" class="comment__pagination">
       <ElPagination
@@ -56,7 +44,7 @@ const props = defineProps({
  * 热门评论
  */
 const commentsHot = ref<IComment[]>([])
-const commentHotCallback = async() => {
+const commentHotCallback = async () => {
   const comment = await getCommentHot({
     id: props.id,
     type: props.type,
@@ -72,7 +60,7 @@ const total = ref<number>(0)
 const cursor = ref<string>('')
 const currentPage = ref<number>(1)
 const commentsNew = ref<IComment[]>([])
-const commentNewCallback = async() => {
+const commentNewCallback = async () => {
   const comment = await getCommentNew({
     id: props.id,
     type: props.type,
@@ -96,9 +84,12 @@ const commentCallback = () => {
   commentNewCallback()
 }
 
-watch(() => props.id, () => {
-  commentCallback()
-})
+watch(
+  () => props.id,
+  () => {
+    commentCallback()
+  }
+)
 
 onMounted(() => {
   commentCallback()

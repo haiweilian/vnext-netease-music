@@ -17,13 +17,13 @@
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
-import type { PropType } from 'vue'
+import { PropType, toRef } from 'vue'
 
 import Icon from '~/components/base/Icon.vue'
 import { thumbnail, formatCount } from '~/utils'
 import type { IPlaylist } from '~/types'
 
-const { playlist } = defineProps({
+const props = defineProps({
   playlist: {
     type: Object as PropType<IPlaylist>,
     required: true,
@@ -31,8 +31,10 @@ const { playlist } = defineProps({
 })
 
 const router = useRouter()
+const playlist = toRef(props, 'playlist')
+
 const goPlaylist = () => {
-  router.push(`/playlist/${playlist.id}`)
+  router.push(`/playlist/${playlist.value.id}`)
 }
 </script>
 
@@ -77,7 +79,7 @@ const goPlaylist = () => {
     right: 0;
     left: 0;
     padding: 6px;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgb(0 0 0 / 40%);
     transition: all 0.3s;
     transform: translateY(-100%);
 
@@ -101,7 +103,7 @@ const goPlaylist = () => {
     line-height: 22px;
     color: #d33a31;
     text-align: center;
-    background: rgba(255, 255, 255, 0.4);
+    background: rgb(255 255 255 / 40%);
     opacity: 0;
     transition: all 0.3s;
 

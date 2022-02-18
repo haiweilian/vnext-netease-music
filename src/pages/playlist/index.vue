@@ -1,16 +1,8 @@
 <template>
   <PlaylistIntro />
-  <Tabs
-    v-model="currentTab"
-    :tabs="localPlaylistTabs"
-    @change="topPlaylistCallback"
-  />
+  <Tabs v-model="currentTab" :tabs="localPlaylistTabs" @change="topPlaylistCallback" />
   <div class="result">
-    <PlaylistCard
-      v-for="playlist of playlists"
-      :key="playlist.id"
-      :playlist="playlist"
-    />
+    <PlaylistCard v-for="playlist of playlists" :key="playlist.id" :playlist="playlist" />
   </div>
   <ElPagination
     v-model:currentPage="currentPage"
@@ -37,7 +29,7 @@ const playlists = ref<IPlaylist[]>([])
 const currentTab = ref<string | number>(localPlaylistTabs[0]?.value)
 const currentPage = ref<number>(1)
 
-const topPlaylistCallback = async() => {
+const topPlaylistCallback = async () => {
   const topPlaylist = await getTopPlaylist({
     cat: currentTab.value,
     offset: currentPage.value - 1,

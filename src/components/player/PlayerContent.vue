@@ -1,6 +1,6 @@
 <template>
   <div class="player-content__playimg" @click="togglePlayer">
-    <img class="player-content__blur" :src="thumbnail(props.currentSong.picUrl, 40)">
+    <img class="player-content__blur" :src="thumbnail(props.currentSong.picUrl, 40)" />
     <div class="player-content__mask"></div>
     <Icon :name="iconStatus" class="player-content__control" size="22" />
   </div>
@@ -49,7 +49,7 @@ const store = useStore()
 /**
  * 打开或关闭歌词
  */
-const iconStatus = computed<string>(() => store.state.player.lyricPageStatus ? 'shrink' : 'expand')
+const iconStatus = computed<string>(() => (store.state.player.lyricPageStatus ? 'shrink' : 'expand'))
 const togglePlayer = () => {
   store.commit(SET_LYRIC_PAGE_STATUS)
 }
@@ -78,7 +78,7 @@ const togglePlayer = () => {
     right: 0;
     bottom: 0;
     left: 0;
-    background: rgba(0, 0, 0, 0.2);
+    background: rgb(0 0 0 / 20%);
   }
 
   @include e(control) {
@@ -88,7 +88,6 @@ const togglePlayer = () => {
     font-size: 50px;
     font-weight: bold;
     color: #fff;
-    -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
   }
 

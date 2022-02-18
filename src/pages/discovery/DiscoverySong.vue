@@ -1,13 +1,7 @@
 <template>
-  <h6 class="title">
-    最新音乐
-  </h6>
+  <h6 class="title">最新音乐</h6>
   <div class="content">
-    <SongCard
-      v-for="song of songs"
-      :key="song.id"
-      :song="song"
-    />
+    <SongCard v-for="song of songs" :key="song.id" :song="song" />
   </div>
 </template>
 
@@ -20,7 +14,7 @@ import type { ISong } from '~/types'
 
 const songs = ref<ISong[]>([])
 
-onMounted(async() => {
+onMounted(async () => {
   songs.value = await getPersonalizedNewsong({ limit: 10 })
 })
 </script>

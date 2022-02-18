@@ -9,29 +9,15 @@
   <teleport to="#app">
     <!-- 搜索推荐 -->
     <div v-show="isSearch" ref="outside" class="search">
-      <p class="search__title">
-        热门搜索
-      </p>
+      <p class="search__title">热门搜索</p>
       <div class="search__tags">
-        <span
-          v-for="hot of hots"
-          :key="hot"
-          class="search__tag"
-          @click="goSearch(hot, true)"
-        >
+        <span v-for="hot of hots" :key="hot" class="search__tag" @click="goSearch(hot, true)">
           {{ hot }}
         </span>
       </div>
-      <p class="search__title">
-        搜索历史
-      </p>
+      <p class="search__title">搜索历史</p>
       <div class="search__tags">
-        <span
-          v-for="hot of storage"
-          :key="hot"
-          class="search__tag"
-          @click="goSearch(hot)"
-        >
+        <span v-for="hot of storage" :key="hot" class="search__tag" @click="goSearch(hot)">
           {{ hot }}
         </span>
       </div>
@@ -87,7 +73,7 @@ const goSearch = (keyword: string, history = false) => {
   }
 }
 
-onMounted(async() => {
+onMounted(async () => {
   hots.value = await getSearchHot()
 })
 </script>
@@ -103,7 +89,7 @@ onMounted(async() => {
   padding: 15px 20px;
   overflow-y: auto;
   background: #fff;
-  box-shadow: 0 0.14286rem 0.57143rem 0 rgb(0 0 0 / 20%);
+  box-shadow: 0 0.142rem 0.571rem 0 rgb(0 0 0 / 20%);
 
   @include e(title) {
     margin-bottom: 15px;

@@ -1,7 +1,7 @@
 <template>
   <div class="comment">
     <div class="comment__avatar">
-      <img v-lazy="thumbnail(comment.avatarUrl, 40)">
+      <img v-lazy="thumbnail(comment.avatarUrl, 40)" />
     </div>
     <div class="comment__content is-border">
       <div class="comment__text">
