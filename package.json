@@ -23,8 +23,8 @@
     "vuex": "4.0.2"
   },
   "devDependencies": {
-    "@bfehub/eslint-config-vue": "^1.0.3",
-    "@bfehub/stylelint-config-basic": "^1.0.3",
+    "@bfehub/eslint-config-vue": "^1.2.0",
+    "@bfehub/stylelint-config-basic": "^1.2.0",
     "@commitlint/cli": "^16.2.1",
     "@commitlint/config-conventional": "^16.2.1",
     "@types/jest": "^27.4.0",
