@@ -51,7 +51,6 @@
 
 <script setup lang="ts">
 import { computed, ref, toRef, watch } from 'vue'
-import { useStore } from 'vuex'
 import { Lrc, Runner } from 'lrc-kit'
 import type { PropType } from 'vue'
 import type { Lyric } from 'lrc-kit'
@@ -63,6 +62,7 @@ import Comment from '~/components/comment/Comment.vue'
 import { getLyric } from '~/api/player'
 import { thumbnail } from '~/utils'
 import { CommentType } from '~/utils/constant'
+import { usePlayerStore } from '~/store/modules/player'
 import type { ISong } from '~/types'
 
 const props = defineProps({
@@ -81,12 +81,11 @@ const props = defineProps({
 })
 const currentSong = toRef(props, 'currentSong')
 
-const store = useStore()
-
 /**
  * 是否展示歌词
  */
-const lyricPageStatus = computed<boolean>(() => store.state.player.lyricPageStatus)
+const playerStore = usePlayerStore()
+const lyricPageStatus = computed<boolean>(() => playerStore.lyricPageStatus)
 
 /**
  * 歌词解析并根据播放时间实时获取歌词行数。

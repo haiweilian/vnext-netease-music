@@ -1,15 +1,5 @@
-import { createStore, createLogger } from 'vuex'
-import user from './modules/user'
-import player from './modules/player'
+import { createPinia } from 'pinia'
 
-const debug = import.meta.env.DEV
+const pinia = createPinia()
 
-const store = createStore({
-  modules: {
-    user,
-    player,
-  },
-  plugins: debug ? [createLogger()] : [],
-})
-
-export default store
+export default pinia

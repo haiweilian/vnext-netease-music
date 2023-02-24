@@ -2,10 +2,10 @@
  * see https://github.com/haiweilian/blogs/blob/master/PlugIn/2020-05-04.md
  */
 import { ElLoading } from 'element-plus'
-import type { ILoadingInstance } from 'element-plus/packages/loading/src/loading.type'
+import type { LoadingInstance } from 'element-plus/es/components/loading/src/loading'
 
 let needLoadingRequestCount = 0
-let loading: ILoadingInstance
+let loading: LoadingInstance
 
 function startLoading() {
   loading = ElLoading.service({

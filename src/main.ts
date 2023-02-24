@@ -12,4 +12,4 @@ app.use(store)
 app.mount('#app')
 
 // install all modules under `modules/`
-Object.values(import.meta.globEager('./modules/*.ts')).map((i) => i.install?.(app))
+Object.values(import.meta.glob('./modules/*.ts', { eager: true })).map((i: any) => i.install?.(app))

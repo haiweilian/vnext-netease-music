@@ -2,8 +2,8 @@
   <ElInput
     v-model="search"
     placeholder="搜索"
-    suffix-icon="el-icon-search"
-    @focus="isSearch = true"
+    :suffix-icon="Search"
+    @click="isSearch = true"
     @keyup.enter="goSearch(search, true)"
   />
   <teleport to="#app">
@@ -27,18 +27,18 @@
 
 <script setup lang="ts">
 import { ElInput } from 'element-plus'
+import { Search } from '@element-plus/icons-vue'
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import { useStore } from 'vuex'
 import { useStorage, onClickOutside } from '@vueuse/core'
 
 import { getSearchHot } from '~/api/search'
 import { isEmpty } from '~/utils'
 import { GLOBAL_SEARCH_HOT_KEY } from '~/utils/constant'
-import { SET_LYRIC_PAGE_STATUS } from '~/store/modules/player'
+import { usePlayerStore } from '~/store/modules/player'
 
-const store = useStore()
 const router = useRouter()
+const playerStore = usePlayerStore()
 
 /**
  * "onClickOutside" 监听元素外的点击事件
@@ -47,7 +47,7 @@ const search = ref<string>('')
 const isSearch = ref<boolean>(false)
 const outside = ref(null)
 onClickOutside(outside, () => {
-  isSearch.value = false
+  if (isSearch.value) isSearch.value = false
 })
 
 /**
@@ -65,7 +65,7 @@ const goSearch = (keyword: string, history = false) => {
 
   isSearch.value = false
   router.push(`/search/${keyword}`)
-  store.commit(SET_LYRIC_PAGE_STATUS, false)
+  playerStore.setLyricPageStatus(false)
 
   if (history) {
     storage.value.unshift(keyword)

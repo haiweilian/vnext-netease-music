@@ -46,9 +46,14 @@ watch(
 <style lang="scss" scoped>
 @include b(player-progress) {
   position: absolute;
-  top: -13px;
+  top: -9px;
   left: 0;
   width: 100%;
   padding: 10px 0;
+
+  /* stylelint-disable-next-line selector-pseudo-element-no-unknown */
+  ::v-deep(.el-slider) {
+    height: 0;
+  }
 }
 </style>

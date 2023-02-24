@@ -1,7 +1,7 @@
 <template>
   <div class="menu-user">
     <!-- 登录后 -->
-    <div v-if="user.userId" class="menu-user__user" @click="logout">
+    <div v-if="user" class="menu-user__user" @click="logout">
       <img class="menu-user__avatar" :src="user.avatarUrl" alt="" />
       <p class="menu-user__name">
         {{ user.nickname }}
@@ -39,16 +39,14 @@
 
 <script setup lang="ts">
 import { ElDialog, ElInput, ElButton, ElMessage, ElMessageBox } from 'element-plus'
-import { useStore } from 'vuex'
 import { useStorage } from '@vueuse/core'
 import { ref, computed, onMounted } from 'vue'
 
-import { SET_LOGIN, SET_LOGOUT } from '~/store/modules/user'
+import { useUserStore } from '~/store/modules/user'
 import { GLOBAL_UID_KEY } from '~/utils/constant'
 import { isEmpty } from '~/utils'
-import type { IUser } from '~/types'
 
-const store = useStore()
+const userStore = useUserStore()
 
 /**
  * 用户登录，这里还不是真正的账号登录
@@ -56,9 +54,9 @@ const store = useStore()
 const storage = useStorage(GLOBAL_UID_KEY, '')
 const loginVisible = ref<boolean>(false)
 const uid = ref<string>('')
-const user = computed<IUser>(() => store.state.user.user)
+const user = computed(() => userStore.user)
 const login = async (uid: string) => {
-  loginVisible.value = !(await store.dispatch(SET_LOGIN, uid))
+  loginVisible.value = !(await userStore.login(uid))
 }
 
 /**
@@ -70,7 +68,7 @@ const logout = async () => {
     cancelButtonText: '取消',
     type: 'warning',
   }).then(() => {
-    store.dispatch(SET_LOGOUT)
+    userStore.logout()
     ElMessage.success('退出成功')
   })
 }

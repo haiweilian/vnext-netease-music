@@ -19,25 +19,23 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, watchEffect } from 'vue'
-import { useStore } from 'vuex'
+import { ref, watchEffect } from 'vue'
 
 import Icon from '~/components/base/Icon.vue'
 import { getUserPlaylist } from '~/api/user'
 import { localMenus } from '~/utils/local'
-import type { IUser, IMenu } from '~/types'
+import { useUserStore } from '~/store/modules/user'
+import type { IMenu } from '~/types'
 
-const store = useStore()
+const userStore = useUserStore()
 
 /**
  * 如果已登录收藏加默认菜单，反之只展示默认菜单。
  */
-const user = computed<IUser>(() => store.state.user.user)
 const menusList = ref<IMenu[]>([])
-
 watchEffect(async () => {
-  if (user.value.userId) {
-    const reqMenus = await getUserPlaylist({ uid: user.value.userId })
+  if (userStore.user) {
+    const reqMenus = await getUserPlaylist({ uid: userStore.user.userId })
     menusList.value = localMenus.concat(reqMenus)
   } else {
     menusList.value = localMenus

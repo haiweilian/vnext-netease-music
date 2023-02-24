@@ -1,7 +1,7 @@
 import path from 'path'
 import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
-import svgIcons from 'vite-plugin-svg-icons'
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import ElementPlus from 'unplugin-element-plus/vite'
 
 export default defineConfig({
@@ -14,11 +14,11 @@ export default defineConfig({
     Vue({
       include: [/\.vue$/, /\.md$/],
     }),
-    svgIcons({
+    createSvgIconsPlugin({
       iconDirs: [path.resolve(process.cwd(), 'src/assets/icons')],
       symbolId: 'icon-[name]',
     }),
-    ElementPlus(),
+    ElementPlus({}),
   ],
   optimizeDeps: {
     include: ['vue', 'vuex', 'vue-router', '@vueuse/core'],
