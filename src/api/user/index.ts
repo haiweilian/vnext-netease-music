@@ -1,6 +1,6 @@
+import type { IMultiPageConfig } from '~/types'
 import { getRequest } from '../request'
 import { translateUserDetail, translateUserPlaylist } from './translate'
-import type { IMultiPageConfig } from '~/types'
 
 enum REQUEST_URL {
   UserDetail = '/user/detail',

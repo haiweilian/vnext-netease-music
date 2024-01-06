@@ -1,6 +1,6 @@
 import type { AxiosResponse } from 'axios'
-import { getSongDetail } from './index'
 import type { IPlaylist, ISong, IPlaylistDetail } from '~/types'
+import { getSongDetail } from './index'
 
 /**
  * 转化推荐歌单，标准化字段、转换字段格式

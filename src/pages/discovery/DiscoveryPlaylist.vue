@@ -8,8 +8,8 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 
-import PlaylistCard from '~/components/playlist/PlaylistCard.vue'
 import { getPersonalizedPlaylist } from '~/api/playlist'
+import PlaylistCard from '~/components/playlist/PlaylistCard.vue'
 import type { IPlaylist } from '~/types'
 
 const playlists = ref<IPlaylist[]>([])

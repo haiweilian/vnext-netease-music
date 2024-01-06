@@ -1,7 +1,8 @@
-import { nextTick } from 'vue'
 import { mount } from '@vue/test-utils'
-import Tabs from '../Tabs.vue'
+import { describe, expect, test } from 'vitest'
+import { nextTick } from 'vue'
 import { localPlaylistTabs } from '~/utils/local'
+import Tabs from '../Tabs.vue'
 
 describe('Tabs', () => {
   test('should tabs props', async () => {

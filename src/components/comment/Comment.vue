@@ -24,10 +24,10 @@ import { ElPagination } from 'element-plus'
 import { onMounted, ref, watch } from 'vue'
 import type { PropType } from 'vue'
 
-import CommentItem from './CommentItem.vue'
 import { getCommentHot, getCommentNew } from '~/api/comment'
-import type { CommentType } from '~/utils/constant'
 import type { IComment } from '~/types'
+import type { CommentType } from '~/utils/constant'
+import CommentItem from './CommentItem.vue'
 
 const props = defineProps({
   id: {

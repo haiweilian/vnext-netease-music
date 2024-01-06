@@ -8,8 +8,8 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 
-import SongCard from '~/components/song/SongCard.vue'
 import { getPersonalizedNewsong } from '~/api/playlist'
+import SongCard from '~/components/song/SongCard.vue'
 import type { ISong } from '~/types'
 
 const songs = ref<ISong[]>([])

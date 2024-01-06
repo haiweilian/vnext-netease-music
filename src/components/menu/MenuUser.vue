@@ -38,13 +38,13 @@
 </template>
 
 <script setup lang="ts">
-import { ElDialog, ElInput, ElButton, ElMessage, ElMessageBox } from 'element-plus'
 import { useStorage } from '@vueuse/core'
+import { ElDialog, ElInput, ElButton, ElMessage, ElMessageBox } from 'element-plus'
 import { ref, computed, onMounted } from 'vue'
 
 import { useUserStore } from '~/store/modules/user'
-import { GLOBAL_UID_KEY } from '~/utils/constant'
 import { isEmpty } from '~/utils'
+import { GLOBAL_UID_KEY } from '~/utils/constant'
 
 const userStore = useUserStore()
 

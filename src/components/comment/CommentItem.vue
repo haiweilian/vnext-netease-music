@@ -30,8 +30,8 @@ import { toRef } from 'vue'
 import type { PropType } from 'vue'
 
 import Icon from '~/components/base/Icon.vue'
-import { thumbnail } from '~/utils'
 import type { IComment } from '~/types'
+import { thumbnail } from '~/utils'
 
 const props = defineProps({
   comment: {

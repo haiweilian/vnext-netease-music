@@ -1,7 +1,7 @@
+import type { IMultiPageBeforeConfig } from '~/types'
+import { CommentType } from '~/utils/constant'
 import { getRequest } from '../request'
 import { translateComment } from './translate'
-import { CommentType } from '~/utils/constant'
-import type { IMultiPageBeforeConfig } from '~/types'
 
 enum REQUEST_URL {
   CommentHot = '/comment/hot',

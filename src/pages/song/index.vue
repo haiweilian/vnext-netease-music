@@ -8,12 +8,12 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 
+import { getTopSong } from '~/api/playlist'
 import Tabs from '~/components/base/Tabs.vue'
 import SongCard from '~/components/song/SongCard.vue'
 
-import { getTopSong } from '~/api/playlist'
-import { localSongTabs } from '~/utils/local'
 import type { ISong } from '~/types'
+import { localSongTabs } from '~/utils/local'
 
 const songs = ref<ISong[]>([])
 const currentTab = ref<string | number>(localSongTabs[0]?.value)

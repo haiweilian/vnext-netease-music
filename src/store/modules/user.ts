@@ -1,10 +1,10 @@
-import { defineStore } from 'pinia'
 import { useStorage } from '@vueuse/core'
 import { ElMessage } from 'element-plus'
-import { isEmpty } from '~/utils'
-import { GLOBAL_UID_KEY } from '~/utils/constant'
+import { defineStore } from 'pinia'
 import { getUserDetail } from '~/api/user'
 import type { IUser } from '~/types'
+import { isEmpty } from '~/utils'
+import { GLOBAL_UID_KEY } from '~/utils/constant'
 
 const storage = useStorage(GLOBAL_UID_KEY, '')
 

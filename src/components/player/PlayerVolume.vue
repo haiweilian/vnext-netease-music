@@ -2,7 +2,7 @@
   <div class="player-volume">
     <Icon :name="volumeStatusName" size="20" @click="changeVolumeStatus" />
     <ElSlider
-      v-model="volume"
+      v-model="volumeRef"
       :min="0"
       :max="1"
       :step="0.01"
@@ -14,8 +14,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, computed, onMounted } from 'vue'
 import { ElSlider } from 'element-plus'
+import { ref, watch, computed, onMounted } from 'vue'
 import Icon from '~/components/base/Icon.vue'
 
 const props = defineProps({
@@ -29,9 +29,9 @@ const emits = defineEmits(['update:volume'])
 /**
  * 改变音量更新值
  */
-const volume = ref<number>(0.75)
+const volumeRef = ref<number>(0.75)
 const changeVolume = () => {
-  emits('update:volume', volume.value)
+  emits('update:volume', volumeRef.value)
 }
 
 /**
@@ -43,10 +43,10 @@ const volumeStatusName = computed(() => (volumeStatus.value ? 'volume-up' : 'vol
 const changeVolumeStatus = () => {
   volumeStatus.value = !volumeStatus.value
   if (volumeStatus.value) {
-    volume.value = volumeCache.value
+    volumeRef.value = volumeCache.value
   } else {
-    volumeCache.value = volume.value
-    volume.value = 0
+    volumeCache.value = volumeRef.value
+    volumeRef.value = 0
   }
 }
 
@@ -57,7 +57,7 @@ onMounted(() => {
 watch(
   () => props.volume,
   (newv) => {
-    volume.value = newv
+    volumeRef.value = newv
   }
 )
 </script>

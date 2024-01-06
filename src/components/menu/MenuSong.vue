@@ -21,11 +21,11 @@
 <script setup lang="ts">
 import { ref, watchEffect } from 'vue'
 
-import Icon from '~/components/base/Icon.vue'
 import { getUserPlaylist } from '~/api/user'
-import { localMenus } from '~/utils/local'
+import Icon from '~/components/base/Icon.vue'
 import { useUserStore } from '~/store/modules/user'
 import type { IMenu } from '~/types'
+import { localMenus } from '~/utils/local'
 
 const userStore = useUserStore()
 

@@ -16,12 +16,12 @@
 </template>
 
 <script setup lang="ts">
-import { useRouter } from 'vue-router'
 import { PropType, toRef } from 'vue'
+import { useRouter } from 'vue-router'
 
 import Icon from '~/components/base/Icon.vue'
-import { thumbnail, formatCount } from '~/utils'
 import type { IPlaylist } from '~/types'
+import { thumbnail, formatCount } from '~/utils'
 
 const props = defineProps({
   playlist: {

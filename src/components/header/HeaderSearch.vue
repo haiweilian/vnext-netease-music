@@ -26,16 +26,16 @@
 </template>
 
 <script setup lang="ts">
-import { ElInput } from 'element-plus'
 import { Search } from '@element-plus/icons-vue'
+import { useStorage, onClickOutside } from '@vueuse/core'
+import { ElInput } from 'element-plus'
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import { useStorage, onClickOutside } from '@vueuse/core'
 
 import { getSearchHot } from '~/api/search'
+import { usePlayerStore } from '~/store/modules/player'
 import { isEmpty } from '~/utils'
 import { GLOBAL_SEARCH_HOT_KEY } from '~/utils/constant'
-import { usePlayerStore } from '~/store/modules/player'
 
 const router = useRouter()
 const playerStore = usePlayerStore()

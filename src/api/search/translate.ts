@@ -1,6 +1,6 @@
 import type { AxiosResponse } from 'axios'
-import { SearchType } from '~/utils/constant'
 import type { ISong, IPlaylist } from '~/types'
+import { SearchType } from '~/utils/constant'
 
 /**
  * 转化搜索，返回的字段和格式不一致，分别单独处理

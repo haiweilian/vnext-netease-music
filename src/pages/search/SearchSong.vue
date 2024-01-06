@@ -15,10 +15,10 @@ import { ElPagination } from 'element-plus'
 import { onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 
-import SongCard from '~/components/song/SongCard.vue'
 import { getSearch } from '~/api/search'
-import { SearchType } from '~/utils/constant'
+import SongCard from '~/components/song/SongCard.vue'
 import type { ISong } from '~/types'
+import { SearchType } from '~/utils/constant'
 
 const route = useRoute()
 const emits = defineEmits(['count'])

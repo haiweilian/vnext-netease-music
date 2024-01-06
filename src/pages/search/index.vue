@@ -18,8 +18,8 @@ import { ElTabs, ElTabPane } from 'element-plus'
 import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
 
-import SearchSong from './SearchSong.vue'
 import SearchPlaylist from './SearchPlaylist.vue'
+import SearchSong from './SearchSong.vue'
 
 const route = useRoute()
 

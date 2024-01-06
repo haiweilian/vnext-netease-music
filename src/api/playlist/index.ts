@@ -1,3 +1,4 @@
+import type { IMultiPageConfig, IMultiPageBeforeConfig } from '~/types'
 import { getRequest } from '../request'
 import {
   translatePersonalizedPlaylist,
@@ -6,7 +7,6 @@ import {
   translateTopSong,
   translatePlaylistDetail,
 } from './translate'
-import type { IMultiPageConfig, IMultiPageBeforeConfig } from '~/types'
 
 enum REQUEST_URL {
   PersonalizedPlaylist = '/personalized',

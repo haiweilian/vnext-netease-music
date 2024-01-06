@@ -8,8 +8,8 @@
 </template>
 
 <script setup lang="ts">
-import MenuUser from '~/components/menu/MenuUser.vue'
 import MenuSong from '~/components/menu/MenuSong.vue'
+import MenuUser from '~/components/menu/MenuUser.vue'
 </script>
 
 <style lang="scss" scoped>

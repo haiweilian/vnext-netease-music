@@ -16,13 +16,13 @@
 import { ElPagination } from 'element-plus'
 import { ref, onMounted } from 'vue'
 
-import PlaylistIntro from './PlaylistIntro.vue'
+import { getTopPlaylist } from '~/api/playlist'
 import Tabs from '~/components/base/Tabs.vue'
 import PlaylistCard from '~/components/playlist/PlaylistCard.vue'
 
-import { getTopPlaylist } from '~/api/playlist'
-import { localPlaylistTabs } from '~/utils/local'
 import type { IPlaylist } from '~/types'
+import { localPlaylistTabs } from '~/utils/local'
+import PlaylistIntro from './PlaylistIntro.vue'
 
 const total = ref<number>(0)
 const playlists = ref<IPlaylist[]>([])

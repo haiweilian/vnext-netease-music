@@ -12,8 +12,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
 import { ElSlider } from 'element-plus'
+import { ref, watch } from 'vue'
 
 const props = defineProps({
   currentTime: {

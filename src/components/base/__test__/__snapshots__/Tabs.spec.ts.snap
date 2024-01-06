@@ -1,55 +1,55 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Tabs should tabs emits 1`] = `
-"<ul class=\\"tabs\\">
-  <li class=\\"tabs__item is-active\\"><span>全部</span></li>
-  <li class=\\"tabs__item\\"><span>欧美</span></li>
-  <li class=\\"tabs__item\\"><span>华语</span></li>
-  <li class=\\"tabs__item\\"><span>流行</span></li>
-  <li class=\\"tabs__item\\"><span>说唱</span></li>
-  <li class=\\"tabs__item\\"><span>摇滚</span></li>
-  <li class=\\"tabs__item\\"><span>民谣</span></li>
-  <li class=\\"tabs__item\\"><span>电子</span></li>
-  <li class=\\"tabs__item\\"><span>轻音乐</span></li>
-  <li class=\\"tabs__item\\"><span>ACG</span></li>
-  <li class=\\"tabs__item\\"><span>怀旧</span></li>
-  <li class=\\"tabs__item\\"><span>治愈</span></li>
-  <li class=\\"tabs__item\\"><span>旅行</span></li>
+exports[`Tabs > should tabs emits 1`] = `
+"<ul data-v-854e2ef6="" class="tabs">
+  <li data-v-854e2ef6="" class="tabs__item is-active"><span data-v-854e2ef6="">全部</span></li>
+  <li data-v-854e2ef6="" class="tabs__item"><span data-v-854e2ef6="">欧美</span></li>
+  <li data-v-854e2ef6="" class="tabs__item"><span data-v-854e2ef6="">华语</span></li>
+  <li data-v-854e2ef6="" class="tabs__item"><span data-v-854e2ef6="">流行</span></li>
+  <li data-v-854e2ef6="" class="tabs__item"><span data-v-854e2ef6="">说唱</span></li>
+  <li data-v-854e2ef6="" class="tabs__item"><span data-v-854e2ef6="">摇滚</span></li>
+  <li data-v-854e2ef6="" class="tabs__item"><span data-v-854e2ef6="">民谣</span></li>
+  <li data-v-854e2ef6="" class="tabs__item"><span data-v-854e2ef6="">电子</span></li>
+  <li data-v-854e2ef6="" class="tabs__item"><span data-v-854e2ef6="">轻音乐</span></li>
+  <li data-v-854e2ef6="" class="tabs__item"><span data-v-854e2ef6="">ACG</span></li>
+  <li data-v-854e2ef6="" class="tabs__item"><span data-v-854e2ef6="">怀旧</span></li>
+  <li data-v-854e2ef6="" class="tabs__item"><span data-v-854e2ef6="">治愈</span></li>
+  <li data-v-854e2ef6="" class="tabs__item"><span data-v-854e2ef6="">旅行</span></li>
 </ul>"
 `;
 
-exports[`Tabs should tabs props 1`] = `
-"<ul class=\\"tabs\\">
-  <li class=\\"tabs__item is-active\\"><span>全部</span></li>
-  <li class=\\"tabs__item\\"><span>欧美</span></li>
-  <li class=\\"tabs__item\\"><span>华语</span></li>
-  <li class=\\"tabs__item\\"><span>流行</span></li>
-  <li class=\\"tabs__item\\"><span>说唱</span></li>
-  <li class=\\"tabs__item\\"><span>摇滚</span></li>
-  <li class=\\"tabs__item\\"><span>民谣</span></li>
-  <li class=\\"tabs__item\\"><span>电子</span></li>
-  <li class=\\"tabs__item\\"><span>轻音乐</span></li>
-  <li class=\\"tabs__item\\"><span>ACG</span></li>
-  <li class=\\"tabs__item\\"><span>怀旧</span></li>
-  <li class=\\"tabs__item\\"><span>治愈</span></li>
-  <li class=\\"tabs__item\\"><span>旅行</span></li>
+exports[`Tabs > should tabs props 1`] = `
+"<ul data-v-854e2ef6="" class="tabs">
+  <li data-v-854e2ef6="" class="tabs__item is-active"><span data-v-854e2ef6="">全部</span></li>
+  <li data-v-854e2ef6="" class="tabs__item"><span data-v-854e2ef6="">欧美</span></li>
+  <li data-v-854e2ef6="" class="tabs__item"><span data-v-854e2ef6="">华语</span></li>
+  <li data-v-854e2ef6="" class="tabs__item"><span data-v-854e2ef6="">流行</span></li>
+  <li data-v-854e2ef6="" class="tabs__item"><span data-v-854e2ef6="">说唱</span></li>
+  <li data-v-854e2ef6="" class="tabs__item"><span data-v-854e2ef6="">摇滚</span></li>
+  <li data-v-854e2ef6="" class="tabs__item"><span data-v-854e2ef6="">民谣</span></li>
+  <li data-v-854e2ef6="" class="tabs__item"><span data-v-854e2ef6="">电子</span></li>
+  <li data-v-854e2ef6="" class="tabs__item"><span data-v-854e2ef6="">轻音乐</span></li>
+  <li data-v-854e2ef6="" class="tabs__item"><span data-v-854e2ef6="">ACG</span></li>
+  <li data-v-854e2ef6="" class="tabs__item"><span data-v-854e2ef6="">怀旧</span></li>
+  <li data-v-854e2ef6="" class="tabs__item"><span data-v-854e2ef6="">治愈</span></li>
+  <li data-v-854e2ef6="" class="tabs__item"><span data-v-854e2ef6="">旅行</span></li>
 </ul>"
 `;
 
-exports[`Tabs should tabs props 2`] = `
-"<ul class=\\"tabs\\">
-  <li class=\\"tabs__item\\"><span>全部</span></li>
-  <li class=\\"tabs__item\\"><span>欧美</span></li>
-  <li class=\\"tabs__item\\"><span>华语</span></li>
-  <li class=\\"tabs__item\\"><span>流行</span></li>
-  <li class=\\"tabs__item\\"><span>说唱</span></li>
-  <li class=\\"tabs__item\\"><span>摇滚</span></li>
-  <li class=\\"tabs__item\\"><span>民谣</span></li>
-  <li class=\\"tabs__item\\"><span>电子</span></li>
-  <li class=\\"tabs__item\\"><span>轻音乐</span></li>
-  <li class=\\"tabs__item\\"><span>ACG</span></li>
-  <li class=\\"tabs__item\\"><span>怀旧</span></li>
-  <li class=\\"tabs__item\\"><span>治愈</span></li>
-  <li class=\\"tabs__item is-active\\"><span>旅行</span></li>
+exports[`Tabs > should tabs props 2`] = `
+"<ul data-v-854e2ef6="" class="tabs">
+  <li data-v-854e2ef6="" class="tabs__item"><span data-v-854e2ef6="">全部</span></li>
+  <li data-v-854e2ef6="" class="tabs__item"><span data-v-854e2ef6="">欧美</span></li>
+  <li data-v-854e2ef6="" class="tabs__item"><span data-v-854e2ef6="">华语</span></li>
+  <li data-v-854e2ef6="" class="tabs__item"><span data-v-854e2ef6="">流行</span></li>
+  <li data-v-854e2ef6="" class="tabs__item"><span data-v-854e2ef6="">说唱</span></li>
+  <li data-v-854e2ef6="" class="tabs__item"><span data-v-854e2ef6="">摇滚</span></li>
+  <li data-v-854e2ef6="" class="tabs__item"><span data-v-854e2ef6="">民谣</span></li>
+  <li data-v-854e2ef6="" class="tabs__item"><span data-v-854e2ef6="">电子</span></li>
+  <li data-v-854e2ef6="" class="tabs__item"><span data-v-854e2ef6="">轻音乐</span></li>
+  <li data-v-854e2ef6="" class="tabs__item"><span data-v-854e2ef6="">ACG</span></li>
+  <li data-v-854e2ef6="" class="tabs__item"><span data-v-854e2ef6="">怀旧</span></li>
+  <li data-v-854e2ef6="" class="tabs__item"><span data-v-854e2ef6="">治愈</span></li>
+  <li data-v-854e2ef6="" class="tabs__item is-active"><span data-v-854e2ef6="">旅行</span></li>
 </ul>"
 `;

@@ -27,8 +27,8 @@ import { computed, toRef } from 'vue'
 import type { PropType } from 'vue'
 
 import { usePlayerStore } from '~/store/modules/player'
-import { thumbnail, padZero } from '~/utils'
 import type { ISong } from '~/types'
+import { thumbnail, padZero } from '~/utils'
 
 const props = defineProps({
   song: {

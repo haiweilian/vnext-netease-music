@@ -11,8 +11,8 @@
 </template>
 
 <script setup lang="ts">
-import HeaderMac from './HeaderMac.vue'
 import HeaderHistory from './HeaderHistory.vue'
+import HeaderMac from './HeaderMac.vue'
 import HeaderSearch from './HeaderSearch.vue'
 </script>
 

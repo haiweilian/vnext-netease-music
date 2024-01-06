@@ -50,20 +50,20 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, toRef, watch } from 'vue'
 import { Lrc, Runner } from 'lrc-kit'
-import type { PropType } from 'vue'
 import type { Lyric } from 'lrc-kit'
-
-import PlayBar from '~/assets/image/play-bar.png'
-import PlayBarSupport from '~/assets/image/play-bar-support.png'
-import Comment from '~/components/comment/Comment.vue'
+import { computed, ref, toRef, watch } from 'vue'
+import type { PropType } from 'vue'
 
 import { getLyric } from '~/api/player'
-import { thumbnail } from '~/utils'
-import { CommentType } from '~/utils/constant'
+import PlayBarSupport from '~/assets/image/play-bar-support.png'
+import PlayBar from '~/assets/image/play-bar.png'
+import Comment from '~/components/comment/Comment.vue'
+
 import { usePlayerStore } from '~/store/modules/player'
 import type { ISong } from '~/types'
+import { thumbnail } from '~/utils'
+import { CommentType } from '~/utils/constant'
 
 const props = defineProps({
   playing: {
@@ -150,10 +150,7 @@ watch(currentSong, (currentSong) => {
 
 @include b(player-lyric) {
   position: fixed;
-  top: 50px;
-  right: 0;
-  bottom: 63px;
-  left: 0;
+  inset: 50px 0 63px;
   z-index: $z-index-player-player;
   padding: 0 36px;
   overflow: hidden;

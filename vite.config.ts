@@ -1,8 +1,9 @@
+/// <reference types="vitest" />
 import path from 'path'
-import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
-import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import ElementPlus from 'unplugin-element-plus/vite'
+import { defineConfig } from 'vite'
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 
 export default defineConfig({
   resolve: {
@@ -11,24 +12,21 @@ export default defineConfig({
     },
   },
   plugins: [
-    Vue({
-      include: [/\.vue$/, /\.md$/],
-    }),
+    Vue(),
+    ElementPlus({}),
     createSvgIconsPlugin({
       iconDirs: [path.resolve(process.cwd(), 'src/assets/icons')],
       symbolId: 'icon-[name]',
     }),
-    ElementPlus({}),
   ],
-  optimizeDeps: {
-    include: ['vue', 'vuex', 'vue-router', '@vueuse/core'],
-    exclude: ['vue-demi'],
-  },
   css: {
     preprocessorOptions: {
       scss: {
         additionalData: '@import "src/styles/additional.scss";',
       },
     },
+  },
+  test: {
+    environment: 'happy-dom',
   },
 })

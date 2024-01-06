@@ -1,6 +1,6 @@
 import type { AxiosResponse } from 'axios'
-import { CommentTrans } from './index'
 import type { IComment } from '~/types'
+import { CommentTrans } from './index'
 
 /**
  * 转化评论数据，提取字段、处理回复格式

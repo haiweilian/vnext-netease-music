@@ -24,9 +24,9 @@ import { computed } from 'vue'
 import type { PropType } from 'vue'
 
 import Icon from '~/components/base/Icon.vue'
-import { thumbnail } from '~/utils'
 import { usePlayerStore } from '~/store/modules/player'
 import type { ISong } from '~/types'
+import { thumbnail } from '~/utils'
 
 const props = defineProps({
   currentSong: {
@@ -73,10 +73,7 @@ const togglePlayer = () => {
 
   @include e(mask) {
     position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+    inset: 0;
     background: rgb(0 0 0 / 20%);
   }
 

@@ -37,13 +37,13 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
 import { useMediaControls } from '@vueuse/core'
+import { computed, ref } from 'vue'
 
-import PlayerLyric from '~/components/player/PlayerLyric.vue'
-import PlayerProgress from '~/components/player/PlayerProgress.vue'
 import PlayerContent from '~/components/player/PlayerContent.vue'
 import PlayerControl from '~/components/player/PlayerControl.vue'
+import PlayerLyric from '~/components/player/PlayerLyric.vue'
+import PlayerProgress from '~/components/player/PlayerProgress.vue'
 import PlayerVolume from '~/components/player/PlayerVolume.vue'
 import { usePlayerStore } from '~/store/modules/player'
 

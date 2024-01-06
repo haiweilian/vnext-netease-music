@@ -15,13 +15,13 @@ import { ElTabs, ElTabPane } from 'element-plus'
 import { onMounted, ref, watch, computed } from 'vue'
 import { useRoute } from 'vue-router'
 
-import PlaylistHeader from './PlaylistHeader.vue'
-import SongCard from '~/components/song/SongCard.vue'
-import Comment from '~/components/comment/Comment.vue'
-
 import { getPlaylistDetail } from '~/api/playlist'
-import { CommentType } from '~/utils/constant'
+import Comment from '~/components/comment/Comment.vue'
+import SongCard from '~/components/song/SongCard.vue'
+
 import type { IPlaylistDetail } from '~/types'
+import { CommentType } from '~/utils/constant'
+import PlaylistHeader from './PlaylistHeader.vue'
 
 const route = useRoute()
 const activeName = ref<string>('song')

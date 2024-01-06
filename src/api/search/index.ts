@@ -1,7 +1,7 @@
+import type { IMultiPageConfig } from '~/types'
+import { SearchType } from '~/utils/constant'
 import { getRequest } from '../request'
 import { translateSearch, translateSearchHot } from './translate'
-import { SearchType } from '~/utils/constant'
-import type { IMultiPageConfig } from '~/types'
 
 enum REQUEST_URL {
   Search = '/search',
